@@ -1,9 +1,12 @@
-call plug#begin('C:/Users/pawel.bis/AppData/Local/nvim/plugged')
+call plug#begin('/home/aoamne/.config/nvim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'neoclide/coc.nvim', { 'as': 'coc', 'branch': 'release' }
 Plug 'jackguo380/vim-lsp-cxx-highlight', { 'as': 'cpp-highlight' }
 Plug 'itchyny/lightline.vim', { 'as': 'lightline' }
 Plug 'preservim/nerdtree', { 'as': 'nerdtree' }
+Plug 'mileszs/ack.vim', { 'as': 'ack' }
+Plug 'junegunn/fzf', { 'as': 'fzf', 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim', { 'as': 'fzf.vim' }
 call plug#end()
 
 set relativenumber
@@ -75,4 +78,6 @@ let mapleader = " "
 nmap <leader>sr :set relativenumber!<CR>
 nmap <leader>rr <Plug>(coc-rename)
 nmap <leader>se :NERDTreeToggle<CR>
+nmap <leader>of :Files<CR>
+nmap <leader>or :History<CR>
 " nmap <leader>rf <Plug>(coc-format-selected)

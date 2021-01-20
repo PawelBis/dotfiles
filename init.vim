@@ -9,6 +9,7 @@ Plug 'junegunn/fzf', { 'as': 'fzf', 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim', { 'as': 'fzf.vim' }
 call plug#end()
 
+syntax on
 set relativenumber
 set tabstop=4
 set shiftwidth=4

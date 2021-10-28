@@ -134,6 +134,8 @@ keymap("n", "Y",                "y$",                                           
 keymap("n", "n",                "nzzzv",                                                  noremaps)
 keymap("n", "N",                "Nzzzv",                                                  noremaps)
 keymap("n", "J",                "mzJ'z",                                                  noremaps)
+keymap("n", "*",                "*zzzv",                                                  noremaps)
+keymap("n", "#",                "#zzzv",                                                  noremaps)
 keymap("n", "<ESC>",            ":noh<CR><ESC>",                                          noremaps)
 keymap("n", "k",                "(v:count > 5 ? \"m'\" . v:count : \"\") . 'k'",          { noremap = true, expr = true, silent = true })
 keymap("n", "j",                "(v:count > 5 ? \"m'\" . v:count : \"\") . 'j'",          { noremap = true, expr = true, silent = true })

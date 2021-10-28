@@ -27,3 +27,4 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 vim.g.cursorhold_updatetime = 100
+vim.o.scrolloff = 8

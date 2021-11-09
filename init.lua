@@ -16,7 +16,7 @@ require("packer").startup(function()
   use "lambdalisue/fern.vim"
   use "kyazdani42/nvim-web-devicons"
   use "ryanoasis/vim-devicons"
-  use { "hoob3rt/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } }
+  use { "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } }
   use "voldikss/vim-floaterm"
   use "lukas-reineke/indent-blankline.nvim"
   use "SirVer/ultisnips"

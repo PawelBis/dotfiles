@@ -13,8 +13,10 @@ end
 
 -- Theme
 vim.cmd [[au ColorScheme * hi Normal ctermbg=None]]
-vim.g.colors_name = 'dracula'
-vim.o.guifont = "JetBrainsMono Nerd Font:h15"
+vim.g.tokyonight_sidebars = { "fern", "floaterm", "nvim-cmp" }
+vim.g.tokyonight_lualine_bold = true
+vim.g.colors_name = 'tokyonight'
+vim.o.guifont = "JetBrainsMono Nerd Font:h11"
 
 -- Global tabs
 vim.o.expandtab = true
@@ -27,4 +29,4 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 vim.g.cursorhold_updatetime = 100
-vim.o.scrolloff = 8
+vim.wo.scrolloff = 10

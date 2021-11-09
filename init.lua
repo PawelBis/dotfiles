@@ -1,6 +1,5 @@
 vim.env.FZF_DEFAULT_COMMAND = "rg --files --hidden"
 
--- Tabs, fonts, number column etc
 require("general")
 
 -- Install packages
@@ -21,7 +20,18 @@ require("packer").startup(function()
   use { "hoob3rt/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } }
   use "voldikss/vim-floaterm"
   use "lukas-reineke/indent-blankline.nvim"
+  use "SirVer/ultisnips"
+  use "honza/vim-snippets"
+  use { 'nvim-treesitter/nvim-treesitter', branch = '0.5-compat', run = ':TSUpdate' }
+  use "folke/tokyonight.nvim"
 end)
+
+require("nvim-treesitter.configs").setup {
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  }
+}
 
 require("nvim-web-devicons").setup {
   default = true;
@@ -36,7 +46,7 @@ require("indent_blankline").setup{
 require("lualine").setup {
   options = {
     icons_enabled = true,
-    theme = "dracula",
+    theme = "tokyonight",
     component_separators = {"", ""},
     section_separators = {"", ""},
     disabled_filetypes = {}
@@ -64,7 +74,12 @@ require("lualine").setup {
 -- nvim-cmp autocomplete setup
 vim.o.completeopt = "menu,menuone,noselect"
 local cmp = require("cmp")
-cmp.setup{
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["UltiSnips#Anon"](args.body)
+    end,
+  },
   mapping = {
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -77,21 +92,14 @@ cmp.setup{
     ["<Down>"] = cmp.mapping.scroll_docs(1),
     ["<Up>"] = cmp.mapping.scroll_docs(-1),
   },
-  sources = {
-    { name = "nvim_lsp" }, { name = "buffer" },
-  },
-}
-
-
--- LSP setup
-local lua_config = require("lua_config")
-lua_config.InitLsp("C:/tools/lua-language-server/")
-lua_config.SetupTabs()
+  sources = ({
+    { name = "nvim_lsp" },
+    { name = "ultisnips" },
+  })
+})
 
 local rust_config = require("rust_config")
 rust_config.InitLsp()
--- rust_config.SetupTabs()
-
 
 function OpenFloaterm(cmd, width, height, autoclose)
     cmd = cmd or ""

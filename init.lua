@@ -6,7 +6,6 @@ require("general")
 require("packer").startup(function()
   use "wbthomason/packer.nvim"
   use "neovim/nvim-lspconfig"
-  -- use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" } -- disable until neovim 0.6 rolls out with native support
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-buffer"

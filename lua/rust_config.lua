@@ -25,7 +25,7 @@ end
 function rust_config.SetupTabs()
   vim.api.nvim_exec(
     [[
-    augroup rust_tab_setup
+    augroup rust-tab-setup
       autocmd!
       autocmd FileType rust lua SetupTabsInner()
     augroup end

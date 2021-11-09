@@ -23,6 +23,15 @@ require("packer").startup(function()
   use "honza/vim-snippets"
   use { 'nvim-treesitter/nvim-treesitter', branch = '0.5-compat', run = ':TSUpdate' }
   use "folke/tokyonight.nvim"
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup{
+        auto_fold = true,
+      }
+    end
+  }
 end)
 
 require("nvim-treesitter.configs").setup {
@@ -161,6 +170,12 @@ function InitFern()
   buffer_keymap(0, "", "b",     "<Plug>(fern-action-open:split)",                         {})
 end
 
+function SetupLuaTabs()
+  vim.o.expandtab = true
+  vim.o.tabstop = 2
+  vim.o.shiftwidth = 2
+end
+
 -- Init Fern keybindings in fern buffers
 vim.api.nvim_exec(
 [[
@@ -183,3 +198,12 @@ augroup END
 false
 )
 
+vim.api.nvim_exec(
+[[
+augroup lua-tabs
+	autocmd!
+    autocmd FileType lua lua SetupLuaTabs()
+augroup END
+]],
+false
+)

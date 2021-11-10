@@ -19,8 +19,6 @@ require("packer").startup(function()
   use { "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } }
   use "voldikss/vim-floaterm"
   use "lukas-reineke/indent-blankline.nvim"
-  use "SirVer/ultisnips"
-  use "honza/vim-snippets"
   use { 'nvim-treesitter/nvim-treesitter', branch = '0.5-compat', run = ':TSUpdate' }
   use "folke/tokyonight.nvim"
   use {
@@ -92,11 +90,6 @@ require("lualine").setup {
 vim.o.completeopt = "menu,menuone,noselect"
 local cmp = require("cmp")
 cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body)
-    end,
-  },
   mapping = {
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -111,7 +104,6 @@ cmp.setup({
   },
   sources = ({
     { name = "nvim_lsp" },
-    { name = "ultisnips" },
   })
 })
 

@@ -148,7 +148,7 @@ keymap("n", "<C-p>",            "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",  
 keymap("n", "<C-n>",            "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",            noremaps)
 keymap("n", "<leader>rr",       "<cmd>lua vim.lsp.buf.rename()<CR>",                      noremaps)
 keymap('n', "<leader><leader>", ":Files<CR>",                                             noremaps)
-keymap('n', "<leader>f",        ":Fern . -toggle -right -drawer -reveal=% -width=35<CR><C-w>=",  noremaps)
+keymap('n', "<leader>f",        ":Fern . -toggle -right -drawer -reveal=% -width=35<CR><C-w>=", noremaps)
 keymap("n", "<leader>tt",       OpenFloaterm(),                                           noremaps)
 keymap("n", "<leader>tg",       OpenFloaterm("lazygit", 0.9, 0.9, true),                  noremaps)
 keymap("n", "Y",                "y$",                                                     noremaps)
@@ -161,9 +161,11 @@ keymap("n", "<ESC>",            ":noh<CR><ESC>",                                
 keymap("n", "k",                "(v:count > 5 ? \"m'\" . v:count : \"\") . 'k'",          { noremap = true, expr = true, silent = true })
 keymap("n", "j",                "(v:count > 5 ? \"m'\" . v:count : \"\") . 'j'",          { noremap = true, expr = true, silent = true })
 
+keymap("n", "<Plug>(fern-close)", ":FernDo close<CR>",                                    { silent = true, })
+
 local buffer_keymap = vim.api.nvim_buf_set_keymap
 function InitFern()
-  vim.cmd("nmap <buffer> <Plug>(fern-action-open) <Plug>(fern-action-open:select)")
+  buffer_keymap(0, "", "<Plug>(fern-action-open)", "<Plug>(fern-action-open:select) <Plug>(fern-close)", {})
   buffer_keymap(0, "", "n",     "<Plug>(fern-action-new-path)",                           {})
   buffer_keymap(0, "", "d",     "<Plug>(fern-action-remove)",                             {})
   buffer_keymap(0, "", "m",     "<Plug>(fern-action-move)",                               {})
@@ -171,8 +173,8 @@ function InitFern()
   buffer_keymap(0, "", "R",     "<Plug>(fern-action-reload)",                             {})
   buffer_keymap(0, "", "H",     "<Plug>(fern-action-hidden-toggle)",                      {})
   buffer_keymap(0, "", "\'",    "<Plug>(fern-action-mark:toggle)",                        {})
-  buffer_keymap(0, "", "v",     "<Plug>(fern-action-open:vsplit)",                        {})
-  buffer_keymap(0, "", "b",     "<Plug>(fern-action-open:split)",                         {})
+  buffer_keymap(0, "", "v",     "<Plug>(fern-action-open:vsplit) <Plug>(fern-close)",     {})
+  buffer_keymap(0, "", "b",     "<Plug>(fern-action-open:split) <Plug>(fern-close)",      {})
 end
 
 function SetupLuaTabs()

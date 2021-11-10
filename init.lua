@@ -53,7 +53,7 @@ require("indent_blankline").setup{
 
 require("lualine").setup {
   options = {
-    icons_enabled = true,
+    icons_enabled = false,
     theme = "tokyonight",
     component_separators = {"", ""},
     section_separators = {"", ""},
@@ -63,8 +63,8 @@ require("lualine").setup {
     lualine_a = {"mode"},
     lualine_b = {"branch"},
     lualine_c = {"filename"},
-    lualine_x = {"encoding", "fileformat", "filetype"},
-    lualine_y = {"progress"},
+    lualine_x = {"encoding"},
+    lualine_y = {"filetype"},
     lualine_z = {"location"}
   },
   inactive_sections = {

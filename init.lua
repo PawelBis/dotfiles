@@ -31,6 +31,7 @@ require("packer").startup(function()
     end
   }
   use "webdevel/tabulous"
+  use "L3MON4D3/LuaSnip"
 end)
 
 vim.g.tabulousLabelModifiedStr = '*'

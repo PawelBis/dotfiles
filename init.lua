@@ -148,7 +148,7 @@ keymap("n", "<C-p>",            "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",  
 keymap("n", "<C-n>",            "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",            noremaps)
 keymap("n", "<leader>rr",       "<cmd>lua vim.lsp.buf.rename()<CR>",                      noremaps)
 keymap('n', "<leader><leader>", ":Files<CR>",                                             noremaps)
-keymap('n', "<leader>f",        ":Fern . -toggle -right -drawer -reveal=% -width=35<CR><C-w>=", noremaps)
+keymap('n', "<leader>f",        ":Fern . -toggle -right -drawer -reveal=%<CR>",           noremaps)
 keymap("n", "<leader>tt",       OpenFloaterm(),                                           noremaps)
 keymap("n", "<leader>tg",       OpenFloaterm("lazygit", 0.9, 0.9, true),                  noremaps)
 keymap("n", "Y",                "y$",                                                     noremaps)
@@ -175,6 +175,7 @@ function InitFern()
   buffer_keymap(0, "", "\'",    "<Plug>(fern-action-mark:toggle)",                        {})
   buffer_keymap(0, "", "v",     "<Plug>(fern-action-open:vsplit) <Plug>(fern-close)",     {})
   buffer_keymap(0, "", "b",     "<Plug>(fern-action-open:split) <Plug>(fern-close)",      {})
+  -- buffer_keymap(0, "", "t",     "<Plug>(fern-action-open:tabedit) <Plug>(fern-close)",      {})
 end
 
 function SetupLuaTabs()

@@ -32,7 +32,11 @@ require("packer").startup(function()
       }
     end
   }
+  use "webdevel/tabulous"
 end)
+
+vim.g.tabulousLabelModifiedStr = '*'
+vim.g.tabulousLabelNameOptions = ':t'
 
 require("nvim-treesitter.configs").setup {
   ensure_installed = {
@@ -59,8 +63,8 @@ require("lualine").setup {
   options = {
     icons_enabled = false,
     theme = "tokyonight",
-    component_separators = { left = "", right = ""},
-    section_separators = {left = "",  right = ""},
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "",  right = "" },
     disabled_filetypes = {}
   },
   sections = {
@@ -158,6 +162,17 @@ keymap("n", "J",                "mzJ'z",                                        
 keymap("n", "*",                "*zzzv",                                                  noremaps)
 keymap("n", "#",                "#zzzv",                                                  noremaps)
 keymap("n", "<ESC>",            ":noh<CR><ESC>",                                          noremaps)
+keymap("n", "<TAB>",            ":tabn<cr>",                                              noremaps)
+keymap("n", "<S-TAB>",          ":tabp<cr>",                                              noremaps)
+keymap("n", "<C-1>",            ":tabn1<cr>",                                             {})
+keymap("n", "<C-2>",            ":tabn2<cr>",                                             {})
+keymap("n", "<C-3>",            ":tabn3<cr>",                                             {})
+keymap("n", "<C-4>",            ":tabn4<cr>",                                             {})
+keymap("n", "<C-5>",            ":tabn5<cr>",                                             {})
+keymap("n", "<C-6>",            ":tabn6<cr>",                                             {})
+keymap("n", "<C-7>",            ":tabn7<cr>",                                             {})
+keymap("n", "<C-8>",            ":tabn8<cr>",                                             {})
+keymap("n", "<C-9>",            ":tabn9<cr>",                                             {})
 keymap("n", "k",                "(v:count > 5 ? \"m'\" . v:count : \"\") . 'k'",          { noremap = true, expr = true, silent = true })
 keymap("n", "j",                "(v:count > 5 ? \"m'\" . v:count : \"\") . 'j'",          { noremap = true, expr = true, silent = true })
 
@@ -175,7 +190,6 @@ function InitFern()
   buffer_keymap(0, "", "\'",    "<Plug>(fern-action-mark:toggle)",                        {})
   buffer_keymap(0, "", "v",     "<Plug>(fern-action-open:vsplit) <Plug>(fern-close)",     {})
   buffer_keymap(0, "", "b",     "<Plug>(fern-action-open:split) <Plug>(fern-close)",      {})
-  -- buffer_keymap(0, "", "t",     "<Plug>(fern-action-open:tabedit) <Plug>(fern-close)",      {})
 end
 
 function SetupLuaTabs()

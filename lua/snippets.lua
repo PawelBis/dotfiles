@@ -131,7 +131,7 @@ luasnip.snippets = {
 
     snippet("cfg", {
       text("#[cfg("),
-      insert(0, "target_os = \"linux'""),
+      insert(0, "target_os = \"linux\""),
       text(")]"),
     }),
   },

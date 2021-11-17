@@ -74,6 +74,54 @@ luasnip.snippets = {
       insert(0),
       text({"", "\t}", "}"}),
     }),
+
+    snippet("let", {
+      text("let "),
+      insert(1),
+      text(" = "),
+      insert(0),
+      text({ ";", "" }),
+    }),
+
+    snippet("letm", {
+      text("let mut "),
+      insert(1),
+      text(" = "),
+      insert(0),
+      text({ ";", "" }),
+    }),
+
+    snippet("lett", {
+      text("let "),
+      insert(1),
+      text(: ),
+      insert(2),
+      text(" = "),
+      insert(0),
+      text({ ";", "" }),
+    }),
+
+    snippet("lettm", {
+      text("let mut"),
+      insert(1),
+      text(: ),
+      insert(2),
+      text(" = "),
+      insert(0),
+      text({ ";", "" }),
+    }),
+
+    snippet("pln", {
+      text("println!(\""),
+      insert(0),
+      text(");"),
+    }),
+
+    snippet("as", {
+      text("assert!("),
+      insert(0, "Predicate"),
+      text(";")
+    }),
   },
 
   lua = {

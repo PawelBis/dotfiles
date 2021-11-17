@@ -172,6 +172,33 @@ luasnip.snippets = {
       insert(0),
       text({ "", "}" }),
     }),
+
+    snippet("for", {
+      text("for "),
+      insert(1),
+      text(" in "),
+      insert(2),
+      text({ " {", "\t" }),
+      insert(0),
+      text({ "", "}" })
+    }),
+
+    snippet("mat", {
+      text("match "),
+      insert(1),
+      text({ " {", "\t" }),
+      insert(2),
+      text(" => "),
+      insert(0),
+      text({ ",", "}" }),
+    }),
+
+    snippet("case", {
+      insert(1),
+      text(" => "),
+      insert(0),
+      text(",")
+    }),
   },
 
   lua = {

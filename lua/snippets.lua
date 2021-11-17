@@ -134,6 +134,44 @@ luasnip.snippets = {
       insert(0, "target_os = \"linux\""),
       text(")]"),
     }),
+
+    snippet("if", {
+      text("if "),
+      insert(1),
+      text({ " {", "\t" }),
+      insert(0),
+      text({ "", "}" }),
+    }),
+
+    snippet("ife", {
+      text("if "),
+      insert(1),
+      text({ " {", "\t" }),
+      insert(2),
+      text({ "", "} else {", "\t" }),
+      insert(0),
+      text({ "", "}" }),
+    }),
+
+    snippet("ifs", {
+      text("if let Some("),
+      insert(1),
+      text(") = "),
+      insert(2),
+      text({ " { ", "\t" }),
+      insert(0),
+      text({ "", "}" }),
+    }),
+
+    snippet("ifs", {
+      text("if let Ok("),
+      insert(1),
+      text(") = "),
+      insert(2),
+      text({ " { ", "\t" }),
+      insert(0),
+      text({ "", "}" }),
+    }),
   },
 
   lua = {

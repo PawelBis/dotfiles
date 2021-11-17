@@ -1,7 +1,5 @@
 vim.env.FZF_DEFAULT_COMMAND = "rg --files --hidden"
-
 require("general")
-
 -- Install packages
 require("packer").startup(function()
   use "wbthomason/packer.nvim"
@@ -88,6 +86,7 @@ require("lualine").setup {
   extensions = {}
 }
 
+local luasnip = require("luasnip")
 -- nvim-cmp autocomplete setup
 vim.o.completeopt = "menu,menuone,noselect"
 local cmp = require("cmp")
@@ -108,12 +107,20 @@ cmp.setup({
     ["<C-l>"] = cmp.mapping.close(),
     ["<Down>"] = cmp.mapping.scroll_docs(1),
     ["<Up>"] = cmp.mapping.scroll_docs(-1),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
   },
   sources = ({
     { name = "nvim_lsp" },
     { name = "luasnip" },
   })
 })
+require("snippets")
 
 local rust_config = require("rust_config")
 rust_config.InitLsp()

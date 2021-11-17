@@ -9,6 +9,7 @@ require("packer").startup(function()
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-buffer"
+  use "saadparwaiz1/cmp_luasnip"
   use "dracula/vim"
   use "junegunn/fzf"
   use "junegunn/fzf.vim"
@@ -91,6 +92,11 @@ require("lualine").setup {
 vim.o.completeopt = "menu,menuone,noselect"
 local cmp = require("cmp")
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end
+  },
   mapping = {
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -105,11 +111,14 @@ cmp.setup({
   },
   sources = ({
     { name = "nvim_lsp" },
+    { name = "luasnip" },
   })
 })
 
 local rust_config = require("rust_config")
 rust_config.InitLsp()
+
+require("latex_config")
 
 function OpenFloaterm(cmd, width, height, autoclose)
     cmd = cmd or ""

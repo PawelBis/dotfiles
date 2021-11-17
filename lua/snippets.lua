@@ -94,7 +94,7 @@ luasnip.snippets = {
     snippet("lett", {
       text("let "),
       insert(1),
-      text(: ),
+      text(": "),
       insert(2),
       text(" = "),
       insert(0),
@@ -102,9 +102,9 @@ luasnip.snippets = {
     }),
 
     snippet("lettm", {
-      text("let mut"),
+      text("let mut "),
       insert(1),
-      text(: ),
+      text(": "),
       insert(2),
       text(" = "),
       insert(0),
@@ -114,13 +114,25 @@ luasnip.snippets = {
     snippet("pln", {
       text("println!(\""),
       insert(0),
-      text(");"),
+      text("\");"),
     }),
 
     snippet("as", {
       text("assert!("),
       insert(0, "Predicate"),
-      text(";")
+      text(");")
+    }),
+
+    snippet("der", {
+      text("#[derive("),
+      insert(0, "Debug"),
+      text(")]"),
+    }),
+
+    snippet("cfg", {
+      text("#[cfg("),
+      insert(0, "target_os = \"linux'""),
+      text(")]"),
     }),
   },
 

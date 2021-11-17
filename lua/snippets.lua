@@ -163,7 +163,7 @@ luasnip.snippets = {
       text({ "", "}" }),
     }),
 
-    snippet("ifs", {
+    snippet("ifo", {
       text("if let Ok("),
       insert(1),
       text(") = "),

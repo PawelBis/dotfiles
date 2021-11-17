@@ -16,15 +16,15 @@ end
 luasnip.snippets = {
   rust = {
     snippet("fn", {
-      text("fn "),
-      insert(1),
-      text("("),
-      insert(2),
-      text(")"),
-      insert(3),
-      text({ " {", "\t" }),
-      insert(0),
-      text({ "", "}" }),
+       text("fn "),
+       insert(1),
+       text("("),
+       insert(2),
+       text(")"),
+       insert(3),
+       text({ " {", "\t" }),
+       insert(0),
+       text({ "", "}" }),
     }),
 
     snippet("pfn", {
@@ -206,10 +206,11 @@ luasnip.snippets = {
       text("function "),
       insert(1),
       text("("),
-      insert(2, "int foo"),
-      text({ ") {", "\t" }),
+      insert(2),
+      text({ ")", "\t" }),
       insert(0),
-      text({ "", "}" }),
+      text({ "", "end" }),
     })
   }
 }
+

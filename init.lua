@@ -1,5 +1,6 @@
 vim.env.FZF_DEFAULT_COMMAND = "rg --files --hidden"
 require("general")
+
 -- Install packages
 require("packer").startup(function()
   use "wbthomason/packer.nvim"
@@ -131,6 +132,8 @@ require("snippets")
 
 local rust_config = require("rust_config")
 rust_config.InitLsp()
+local lua_config = require("lua_config")
+lua_config.InitLsp("C:/tools/lua-language-server")
 
 require("latex_config")
 
@@ -231,16 +234,6 @@ vim.api.nvim_exec(
 augroup terminal-custom
 	autocmd!
     autocmd TermOpen * startinsert
-augroup END
-]],
-false
-)
-
-vim.api.nvim_exec(
-[[
-augroup lua-tabs
-	autocmd!
-    autocmd FileType lua lua SetupLuaTabs()
 augroup END
 ]],
 false

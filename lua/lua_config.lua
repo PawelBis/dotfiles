@@ -3,7 +3,7 @@ local lua_config = {}
 
 function lua_config.InitLsp(lua_lsp_dir)
   require'lspconfig'.sumneko_lua.setup{
-  cmd = { lua_lsp_dir .. "/bin/Windows/lua-language-server.exe", "-E", lua_lsp_dir .. "main.lua"};
+  cmd = { lua_lsp_dir .. "/bin/Windows/lua-language-server.exe", "-E", lua_lsp_dir .. "/main.lua"};
   settings = {
       Lua = {
         runtime = {
@@ -20,6 +20,7 @@ function lua_config.InitLsp(lua_lsp_dir)
     },
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   }
+  lua_config.SetupTabs()
 end
 
 function SetupLuaTabs()

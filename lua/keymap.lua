@@ -19,10 +19,6 @@ end
 local keymap = vim.api.nvim_set_keymap local noremaps = { noremap = true, silent = true } vim.g.mapleader = ' '
 keymap("i", "jk",               "<ESC>",                                                  {})
 
--- Map 'j' and 'k' to move up/down by visible line
-keymap("n", "j",                "gk",                                                     {})
-keymap("n", "k",                "gj",                                                     {})
-
 -- Imrpve undo keychain
 keymap("i", ",",                ",<C-g>u",                                                {})
 keymap("i", ".",                ".<C-g>u",                                                {})
@@ -30,8 +26,9 @@ keymap("i", "!",                "!<C-g>u",                                      
 keymap("i", "?",                "?<C-g>u",                                                {})
 
 -- j / k motions that are longer than 5 are now writing into jump list
-keymap("n", "k",                "(v:count > 5 ? \"m'\" . v:count : \"\") . 'k'",          { noremap = true, expr = true, silent = true })
-keymap("n", "j",                "(v:count > 5 ? \"m'\" . v:count : \"\") . 'j'",          { noremap = true, expr = true, silent = true })
+-- j / k are now moving by visual lines
+keymap("n", "k",                "(v:count > 5 ? \"m'\" . v:count : \"\") . 'gk'",         { noremap = true, expr = true, silent = true })
+keymap("n", "j",                "(v:count > 5 ? \"m'\" . v:count : \"\") . 'gj'",         { noremap = true, expr = true, silent = true })
 
 -- Lsp bindings
 keymap("n", "gd",               "<cmd>lua vim.lsp.buf.definition()<CR>",                  noremaps)

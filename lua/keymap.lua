@@ -19,6 +19,10 @@ end
 local keymap = vim.api.nvim_set_keymap local noremaps = { noremap = true, silent = true } vim.g.mapleader = ' '
 keymap("i", "jk",               "<ESC>",                                                  {})
 
+-- Map 'j' and 'k' to move up/down by visible line
+keymap("n", "j",                "gk",                                                     {})
+keymap("n", "k",                "gj",                                                     {})
+
 -- Imrpve undo keychain
 keymap("i", ",",                ",<C-g>u",                                                {})
 keymap("i", ".",                ".<C-g>u",                                                {})

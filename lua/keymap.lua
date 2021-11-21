@@ -55,7 +55,7 @@ keymap("n", "<leader>fW",       ":Rg <C-r><C-a><CR>",                           
 keymap("n", "<leader>j/",       ":HopPattern<CR>",                                        noremaps)
 keymap("n", "<leader>jf",       ":HopChar<CR>",                                           noremaps)
 keymap("n", "<leader>jl",       ":HopLine<CR>",                                           noremaps)
-keymap("n", "<leader>jw",       ":HowWord<CR>",                                           noremaps)
+keymap("n", "<leader>jw",       ":HopWord<CR>",                                           noremaps)
 
 -- 'Y' is inline with other uppercase bindings
 keymap("n", "Y",                "y$",                                                     noremaps)

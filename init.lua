@@ -35,12 +35,17 @@ require("packer").startup(function()
   }
   use "webdevel/tabulous"
   use "L3MON4D3/LuaSnip"
-  use "phaazon/hop.nvim"
+  use {
+    "phaazon/hop.nvim",
+    branch = "v1",
+    config = function()
+      require("hop").setup{}
+    end
+  }
 end)
 
 vim.g.tabulousLabelModifiedStr = '*'
 vim.g.tabulousLabelNameOptions = ':t'
-
 require("nvim-treesitter.configs").setup {
   ensure_installed = {
     "rust",

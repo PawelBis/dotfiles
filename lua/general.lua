@@ -15,7 +15,7 @@ end
 vim.cmd [[au ColorScheme * hi Normal ctermbg=None]]
 vim.g.tokyonight_sidebars = { "fern", "floaterm", "nvim-cmp" }
 vim.g.tokyonight_lualine_bold = true
-vim.g.colors_name = 'tokyonight'
+vim.cmd("colorscheme tokyonight")
 vim.o.guifont = "JetBrainsMono Nerd Font:h11"
 
 -- Global tabs

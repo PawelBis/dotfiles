@@ -13,8 +13,6 @@ require("packer").startup(function()
   use "hrsh7th/cmp-buffer"
   use "saadparwaiz1/cmp_luasnip"
   use "dracula/vim"
-  use "junegunn/fzf"
-  use "junegunn/fzf.vim"
   use "antoinemadec/FixCursorHold.nvim"
   use "lambdalisue/fern.vim"
   use "kyazdani42/nvim-web-devicons"
@@ -41,6 +39,10 @@ require("packer").startup(function()
     config = function()
       require("hop").setup{}
     end
+  }
+  use {
+    "nvim-telescope/telescope.nvim",
+    requires = { { "nvim-lua/plenary.nvim" } }
   }
 end)
 

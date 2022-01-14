@@ -37,26 +37,16 @@ keymap("n", "gr",               "<cmd>lua vim.lsp.buf.references()<CR>",        
 keymap("n", "gi",               "<cmd>lua vim.lsp.buf.implementation()<CR>",              noremaps)
 keymap("n", "K",                "<cmd>lua vim.lsp.buf.hover()<CR>",                       noremaps)
 keymap("n", "<C-k>",            "<cmd>lua vim.lsp.buf.signature_help()<CR>",              noremaps)
-keymap("n", "<C-p>",            "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",            noremaps)
-keymap("n", "<C-n>",            "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",            noremaps)
 keymap("n", "<leader>rr",       "<cmd>lua vim.lsp.buf.rename()<CR>",                      noremaps)
 
 -- File exploration
-keymap('n', "<leader><leader>", ":Files<CR>",                                             noremaps)
+keymap('n', "<C-p>",            ":Telescope find_files<CR>",                              noremaps)
 keymap('n', "<leader>f",        ":Fern . -toggle -right -drawer -reveal=%<CR>",           noremaps)
 
 -- Floaterm windows
 keymap("n", "<leader>tt",       OpenFloaterm(),                                           noremaps)
 keymap("n", "<leader>tg",       OpenFloaterm("lazygit", 0.9, 0.9, true),                  noremaps)
-keymap("n", "<leader>ff",       ":Rg<CR>",                                                noremaps)
-keymap("n", "<leader>fw",       ":Rg \"<C-r><C-w><CR>\"",                                 noremaps)
-keymap("n", "<leader>fW",       ":Rg <C-r><C-a><CR>",                                     noremaps)
-
--- hop.nvim jumps
-keymap("n", "<leader>j/",       ":HopPattern<CR>",                                        noremaps)
-keymap("n", "<leader>jf",       ":HopChar<CR>",                                           noremaps)
-keymap("n", "<leader>jl",       ":HopLine<CR>",                                           noremaps)
-keymap("n", "<leader>jw",       ":HopWord<CR>",                                           noremaps)
+keymap("n", "<C-f>",            ":Telescope live_grep<CR>",                               noremaps)
 
 -- 'Y' is inline with other uppercase bindings
 keymap("n", "Y",                "y$",                                                     noremaps)

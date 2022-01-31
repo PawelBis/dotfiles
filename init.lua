@@ -19,7 +19,6 @@ require("packer").startup(function()
   use "ryanoasis/vim-devicons"
   use { "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } }
   use "voldikss/vim-floaterm"
-  use "lukas-reineke/indent-blankline.nvim"
   use { 'nvim-treesitter/nvim-treesitter', branch = '0.5-compat', run = ':TSUpdate' }
   use "folke/tokyonight.nvim"
   use {
@@ -44,6 +43,12 @@ require("packer").startup(function()
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/plenary.nvim" } }
   }
+  use { 'anuvyklack/pretty-fold.nvim',
+    config = function()
+      require('pretty-fold').setup{}
+      require('pretty-fold.preview').setup()
+    end
+  }
 end)
 
 vim.g.tabulousLabelModifiedStr = '*'
@@ -65,12 +70,6 @@ vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
 require("nvim-web-devicons").setup {
   default = true;
-}
-
-vim.opt.list = true
-require("indent_blankline").setup{
-  char = '|',
-  buftype_exclude = { "terminal" },
 }
 
 require("lualine").setup {
@@ -159,6 +158,12 @@ vim.api.nvim_exec(
 augroup terminal-custom
 	autocmd!
     autocmd TermOpen * startinsert
+augroup END
+
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * silent! mkview
+  autocmd BufWinEnter * silent! loadview
 augroup END
 ]],
 false

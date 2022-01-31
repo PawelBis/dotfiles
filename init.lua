@@ -59,6 +59,10 @@ require("nvim-treesitter.configs").setup {
   }
 }
 
+vim.wo.foldlevel=20
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+
 require("nvim-web-devicons").setup {
   default = true;
 }

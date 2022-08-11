@@ -204,7 +204,7 @@ wk.register({
     name = "File",
     f = { "<cmd>Telescope find_files<CR>", "Find File" },
     r = { "<cmd>Telescope oldfiles<CR>", "Open Recent File" },
-    t = { "<cmd>Telescope file_browser<CR>", "Show Files Tree" },
+    t = { "<cmd>NvimTreeToggle<CR>", "Show Files Tree" },
     v = { "<C-w>v<C-w>l<cmd>Telescope find_files<CR>", "Open in vertical split" },
     s = { "<C-w>s<C-w>l<cmd>Telescope find_files<CR>", "Open in horizontal split" },
   },

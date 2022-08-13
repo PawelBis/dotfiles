@@ -2,17 +2,24 @@ vim.cmd [[packadd packer.nvim]]
 
 -----------------------------------------------------------
 -- Theme related stuff
-vim.g.tokyonight_style = "night"
-vim.cmd [[silent! colorscheme tokyonight]]
+vim.g.tokyonight_style = "night" vim.cmd [[silent! colorscheme tokyonight]]
 vim.cmd [[set signcolumn=number]]
 vim.cmd [[set splitbelow]]
+vim.cmd [[set laststatus=3]]
 vim.o.number = true
 vim.o.relativenumber = true
 
 require("packer").startup(function()
   use { "wbthomason/packer.nvim" }
-	use { "folke/tokyonight.nvim" }
+  use { "folke/tokyonight.nvim" }
+  use { 
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true }
+  }
+  use { "j-hui/fidget.nvim" }
+  use { "SmiteshP/nvim-navic" }
   use { "neovim/nvim-lspconfig" }
+  use { "simrat39/rust-tools.nvim" }
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use {
     "anuvyklack/pretty-fold.nvim",
@@ -55,19 +62,52 @@ require("packer").startup(function()
       }
     end
   }
+  use {
+    "lukas-reineke/indent-blankline.nvim"
+  }
 end)
 
+require("fidget").setup{}
 require("nvim-tree").setup()
 require("nvim-web-devicons").setup{default = true}
+
+function context()
+  return "CONTEXT"
+end
+require("lualine").setup{
+  options = {
+    theme = "tokyonight"
+  },
+  sections = {
+    lualine_a = {"mode"},
+    lualine_b = {"branch", "diff", "diagnostics"},
+    lualine_c = {"filename"},
+    lualine_x = {"lsp_progress" , "filetype"},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  winbar = { 
+	  lualine_a = { {context} },
+	  lualine_b = { { require("nvim-navic").get_location, cond = require("nvim-navic").is_available }, }
+  },
+  inactive_winbar = { 
+	  lualine_a = { {context} },
+  }
+}
+
+require("indent_blankline").setup {
+  show_current_context = true,
+  show_current_context_start = false,
+}
 
 -----------------------------------------------------------
 -- Diagnostics
 vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
-  underline = true,
-  update_in_insert = true,
-  severity_sort = false,
+ virtual_text = false,
+ signs = true,
+ underline = true,
+ update_in_insert = true,
+ severity_sort = false,
 })
 
 
@@ -96,50 +136,56 @@ vim.cmd [[autocmd BufWinEnter *.* silent loadview]]
 vim.cmd [[set completeopt=menu,menuone,noselect]]
 local cmp = require("cmp")
 cmp.setup({
- mapping = {
-   ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item()),
-   ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item()),
-   ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-   ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-   ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-   ['<C-e>'] = cmp.mapping({
-     i = cmp.mapping.abort(),
-     c = cmp.mapping.close(),
-   }),
-   ['<CR>'] = cmp.mapping.confirm({ select = true }),
-   ['<Tab>'] = cmp.mapping.confirm({ select = true }),
- },
- sources = cmp.config.sources({
-   { name = 'nvim_lsp' },
- }),
+mapping = {
+  ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item()),
+  ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item()),
+  ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+  ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+  ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+  ['<C-e>'] = cmp.mapping({
+    i = cmp.mapping.abort(),
+    c = cmp.mapping.close(),
+  }),
+  ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+},
+sources = cmp.config.sources({
+  { name = 'nvim_lsp' },
+}),
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
- sources = {
-   { name = 'buffer' }
- }
+sources = {
+  { name = 'buffer' }
+}
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
- sources = cmp.config.sources({
-   { name = 'path' }
- }, {
-   { name = 'cmdline' }
- })
+sources = cmp.config.sources({
+  { name = 'path' }
+}, {
+  { name = 'cmdline' }
+})
 })
 
--- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require('lspconfig')['rust_analyzer'].setup {
- capabilities = capabilities
-}
-
-
------------------------------------------------------------
--- Rust
-require("lspconfig").rust_analyzer.setup{}
+local rt = require("rust-tools")
+rt.setup({
+  tools = {
+    inlay_hints = {
+      only_current_line = true,
+    }
+  },
+  server = {
+    on_attach = function(c, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      vim.keymap.set("n", "<leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+      require("nvim-navic").attach(c, bufnr)
+    end,
+  }
+})
 
 function SetupRustTabs()
 	vim.o.expandtab = true
@@ -200,51 +246,51 @@ vim.api.nvim_exec(
 -- WhichKey setup
 local wk = require("which-key")
 wk.register({
-  f = {
-    name = "File",
-    f = { "<cmd>Telescope find_files<CR>", "Find File" },
-    r = { "<cmd>Telescope oldfiles<CR>", "Open Recent File" },
-    t = { "<cmd>NvimTreeToggle<CR>", "Show Files Tree" },
-    v = { "<C-w>v<C-w>l<cmd>Telescope find_files<CR>", "Open in vertical split" },
-    s = { "<C-w>s<C-w>l<cmd>Telescope find_files<CR>", "Open in horizontal split" },
-  },
-  r = {
-    name = "Refactor",
-    r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-    a = { "<cmd>lua vim.lsp.buf.code_action<CR>" },
-  },
-  l = {
-    name = "Lsp",
-    r = { "<cmd>Telescope lsp_references<CR>", "References" },
-    f = { "<cmd>lua vim.lsp.buf.formatting<CR>", "Formatting" },
-    i = { "<cmd>Telescope lsp_incoming_calls<CR>", "Incoming Calls" },
-    o = { "<cmd>Telescope lsp_outgoing_calls<CR>", "Outgoing Calls" },
-    s = { "<cmd>Telescope lsp_document_symbols<CR>", "Local Symbols" },
-    w = { "<cmd>Telescope lsp_document_symbols<CR>", "Workspace Symbols" },
-    d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
-    t = { ":Trouble<CR>", "Diagnostics Window" },
-  },
-  g = {
-    name = "Git",
-    c = { "<cmd>Telescope git_commits<CR>", "Commits" },
-    l = { "<cmd>Telescope git_bcommits<CR>", "This File Commits" },
-    b = { "<cmd>Telescope git_branches<CR>", "Branches" },
-    s = { "<cmd>Telescope git_status<CR>", "Status" },
-    t = { "<cmd>Telescope git_stash<CR>", "Stash" },
-  },
-  s = {
-    name = "Search",
-    s = { "<cmd>Telescope live_grep<CR>", "Grep"},
-    S = { "<cmd>Telescope search_history<CR>", "Search History"},
-    t = { "<cmd>Telescope current_buffer_tags<CR>", "Grep"},
-    c = { "<cmd>Telescope command_history<CR>", "Command History"},
-    b = { "<cmd>Telescope command_history<CR>", "Buffers"},
-  },
-  t = {
-    name = "Toggle", 
-    t = { ":15sp +terminal<CR>A", "Terminal" },
-    n = { ":set rnu!<CR>", "Relative Numbers" },
-  }
+ f = {
+   name = "File",
+   f = { "<cmd>Telescope git_files<CR>", "Find File" },
+   r = { "<cmd>Telescope oldfiles<CR>", "Open Recent File" },
+   t = { "<cmd>NvimTreeToggle<CR>", "Show Files Tree" },
+   v = { "<C-w>v<C-w>l<cmd>Telescope find_files<CR>", "Open in vertical split" },
+   s = { "<C-w>s<C-w>l<cmd>Telescope find_files<CR>", "Open in horizontal split" },
+ },
+ r = {
+   name = "Refactor",
+   r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+   --a = { "<cmd>lua rt.code_action_group.code_action_group<CR>", "Code Actions" },
+ },
+ l = {
+   name = "Lsp",
+   r = { "<cmd>Telescope lsp_references<CR>", "References" },
+   f = { "<cmd>lua vim.lsp.buf.formatting<CR>", "Formatting" },
+   i = { "<cmd>Telescope lsp_incoming_calls<CR>", "Incoming Calls" },
+   o = { "<cmd>Telescope lsp_outgoing_calls<CR>", "Outgoing Calls" },
+   s = { "<cmd>Telescope lsp_document_symbols<CR>", "Local Symbols" },
+   w = { "<cmd>Telescope lsp_document_symbols<CR>", "Workspace Symbols" },
+   d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
+   t = { ":Trouble<CR>", "Diagnostics Window" },
+ },
+ g = {
+   name = "Git",
+   c = { "<cmd>Telescope git_commits<CR>", "Commits" },
+   l = { "<cmd>Telescope git_bcommits<CR>", "This File Commits" },
+   b = { "<cmd>Telescope git_branches<CR>", "Branches" },
+   s = { "<cmd>Telescope git_status<CR>", "Status" },
+   t = { "<cmd>Telescope git_stash<CR>", "Stash" },
+ },
+ s = {
+   name = "Search",
+   s = { "<cmd>Telescope live_grep<CR>", "Grep"},
+   S = { "<cmd>Telescope search_history<CR>", "Search History"},
+   t = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Buffer Fuzzy Find"},
+   c = { "<cmd>Telescope command_history<CR>", "Command History"},
+   b = { "<cmd>Telescope buffers<CR>", "Buffers"},
+ },
+ t = {
+   name = "Toggle", 
+   t = { ":15sp +terminal<CR>A", "Terminal" },
+   n = { ":set rnu!<CR>", "Relative Numbers" },
+ }
 }, {prefix = "<leader>"})
 
 -----------------------------------------------------------
@@ -268,14 +314,14 @@ keymap("i", "?", "?<C-g>u", {})
 
 -- Save jumps > 5 to jumplist
 keymap("n", "k", "(v:count > 4 ? \"m'\" . v:count : \"\") . 'gk'", {
- noremap = true,
- expr = true,
- silent = true,
+noremap = true,
+expr = true,
+silent = true,
 })
 keymap("n", "j", "(v:count > 4 ? \"m'\" . v:count : \"\") . 'gj'", {
- noremap = true,
- expr = true,
- silent = true,
+noremap = true,
+expr = true,
+silent = true,
 })
 
 -- Lsp

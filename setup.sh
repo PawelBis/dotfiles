@@ -1,2 +1,2 @@
-ln -s ~/.dotfiles/config/nvim/init.lua ~/.config/nvim/init.lua
-ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -s $HOME/.dotfiles/config/nvim $XDG_CONFIG_HOME/
+ln -s $HOME/.dotfiles/config/tmux $XDG_CONFIG_HOME/

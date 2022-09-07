@@ -14,7 +14,7 @@ require("packer").startup(function()
   use { "folke/tokyonight.nvim" }
   use { 
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true }
+    requires = { "kyazdani42/nvim-web-devicons" }
   }
   use { "j-hui/fidget.nvim" }
   use { "SmiteshP/nvim-navic" }

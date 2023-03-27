@@ -1,0 +1,732 @@
+nvim .zshenv
+nvim .zshenv
+vim
+rm .zshenv
+nvim .zshenv
+echo $ZDOTDIR
+clear
+clear
+clear
+clear
+theme
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo
+cargo
+clear
+ls
+ls -a
+rm Library
+rm -rf Library
+clear
+nvim
+vim
+nvim
+clear
+claer
+clear
+clear
+CLEAR
+clear
+ii
+clear
+nvim .config/zsh/.zshrc
+nvim
+vim .zshenv
+nvim
+clear
+vim .zshenv
+ls
+nvim .zshrc
+vim .zshrc
+ls
+ls -a
+cd 1
+ls
+vim 1
+rm 1
+clear
+source .zshenv
+nvim
+rg
+brew
+grep
+ls
+ls -a
+vim
+vim
+ls
+rg
+grep
+nvim
+grep
+grep PATH
+nvim
+brew
+nvim
+nvim
+vim .zshenv
+echo $PATH
+nvim
+brew
+ls
+ls -a
+mv .zprofile .config/zsh/.zprofile
+clear
+nvim
+cargo
+cd .cargo
+ls
+cd env
+ls
+cd env
+ls
+nvim env
+cd ..
+ls
+nvim .zshrc
+nvim .zshenv
+cargo
+brew tap homebrew/cask-fonts
+brew install --cask font-jetbrains-mono-font
+brew install --cask font-jetbrains-mono
+clear
+nvim
+nvim .config/zsh/.zshrc
+brew tap homebrew/cask-fonts
+CLEAR
+ls
+cargo
+cargo
+ls
+ls -a
+rm install.sh
+nvim .zshenv
+clear
+nvim .zshenv
+nvim
+clear
+vim .zshrc
+vim .zshenv
+echo $PATH
+vim .zshenv
+nvim .config/zsh/.zshrc
+nvim .config/zsh/.zshrc
+\:q
+exit
+clear
+tmux
+nvim .config/tmux/tmux.conf
+nvim .config/tmux/tmux.conf
+exit
+exit
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+exit
+nvim .config/tmux/tmux.conf
+nvim .config/tmux/tmux.conf
+vim -b .config/tmux/tmux.conf
+nvim .config/tmux/tmux.conf
+exit
+clear
+exit
+brew install brew install --cask font-hack-nerd-font
+brew install --cask font-hack-nerd-font
+brew reinstall --cask font-hack-nerd-font
+brew install bitwarden
+tmux
+tmux ls
+tmux
+tmux ls
+tmux
+tmux
+tmux 
+tmux
+tmux
+tmux
+tmux
+tmux ls
+tmux
+tmux
+tmux
+tmux
+tmux
+tmux ls
+tmux
+tmux
+tmux
+exit
+nvim .config/tmux/tmux.conf
+cd .dotfiles
+git status
+git add .
+nvim setup.sh
+git commit -m "Fix tmux conf"
+git push
+git push
+git push
+git push
+ssh-keygen -t ed25519 -C "your_email@example.com"
+$ eval "$(ssh-agent -s)"
+ssh-agent
+$ eval "$(ssh-agent -s)"
+ssh-add
+ssh-add -s
+open .ssh/config
+cd
+open .ssh/config
+nvim .ssh/config
+ssh-add -K .ssh/id_ed25519
+ssh-add --apple-use-keychain .ssh/id_ed25519
+rm .ssh/id_ed25519
+ssh-keygen -t ed25519 -C "bis1pawel1@gmail.com"
+ssh-add --apple-use-keychain .ssh/id_ed25519
+pbcopy < .ssh/id_ed25519.pub
+clear
+cd .dotfiles
+git push
+clear
+cd ..
+git clone git@github.com:PawelBis/dotfiles.git .dots
+cd .dotfiles
+ls
+rm ~/.dots/config
+rm -rf ~/.dots/config
+rm -rf ~/.dots/nvim
+rm -rf ~/.dots/setup.sh
+ls
+mv config ~/.dots/config
+mv setup.sh ~/.dots/setup.sh
+ls
+cd nvim
+ls
+nvim nvim
+cd ..
+cd .dots
+ls
+ls -a
+cd config
+ls
+cd ..
+git diff
+git commit -m "Fix tmux config"
+git status
+git add .
+git config --global user.email "bis1pawel1@gmail.com"
+git config --global user.name "PawelBis"
+git status
+git commit -m "Fix tmux config"
+git push
+clear
+clear
+cd ..
+ls
+ls -a
+rm -rf .dotfiles
+mv .dots .dotfiles
+clear
+exit
+exit
+tmux ls
+tmux new -As 0
+exit
+nvim
+cd bevytor
+cd Source/bevytor
+nvim
+clear
+cd Downloads
+ls
+rm Rectangle0.58.dmg
+mkdir soure
+rm -rf soure
+mkdir Source
+cd Source
+git clone git@github.com:PawelBis/bevytor.git
+cd bevytor
+cargo build
+clear
+cargo build
+cargo run
+brew install rectangle
+nvim
+tmus new -Asbevytor
+tmux new -Asbevytor
+ls
+cd Applications
+ls
+ls -a
+mv ../Downloads/Visual\ Studio\ Code.app Visual\ Studio\ Code.app
+ls
+cd Downloads
+ls
+mv Godot.app ../Applications/Godot.app
+ls
+clear
+cargo run
+cargo run
+cargo run
+jk
+/Users/aomame/Source/bevytor/game/assets/new_scene.scn.ron; exit
+cargo run
+echo game/assets/new_scene.scn.ron
+cat game/assets/new_scene.scn.ron
+exit
+cargo build
+cd Source/bevy
+cargo run --example scene
+cd examples
+ls
+cd scene
+ls
+nvim scene.rs
+nvim scene.rs
+ls
+cd ../
+ls
+cd .
+ls
+cd ..
+ls
+nvim Cargo.toml
+nvim Cargo.toml
+nvim
+git blame -- crates/bevy_app/src/app.rs
+clear
+rg feature
+brew install rg
+rg feature
+rg bevy_reflect | less
+rg bevy_reflect | less
+ls
+nvim
+cd ../bevytor
+ls
+nvim
+cargo build
+cargo run
+nvim
+clear
+nvim
+clear
+cd ..
+ls
+git clone https://github.com/bevyengine/bevy.git
+cd bevy
+ls
+cd examples
+ls
+clear
+cargo build
+cargo run
+cargo build
+cd ..
+cd ..
+cd bevy
+cd ..
+cd bevytor
+cargo build
+cargo run
+cargo run
+cargo run
+cargo build
+nvim Cargo.toml
+ld
+fd
+fd CArgo
+fd
+ls
+fs
+fs
+fd
+lf
+dll
+find
+fd
+find cargo
+find .toml
+ls
+nvim bevytor/Cargo.toml
+cargo build
+nvim bevytor/Cargo.toml
+nvim game/cargo.toml
+carfgo build
+caro build
+cargo build
+nvim game/cargo.toml
+cargo build
+bevy_reflect
+nvim game/cargo.toml
+cargo build
+nvim game/cargo.toml
+cargo build
+nvim bevytor/cargo.toml
+cargo build
+Cargo build
+cargo build
+kjkjkjcargo
+cargo build
+cargo run
+cargo run
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+cargo build
+ cargo build
+cargo build
+nvim .config/nvim/init.lua
+nvim
+nvim .config/nvim/init.lua
+nvim
+cargo run
+cargo run
+cargo run
+cargo run
+cargo build
+git status
+git add .
+git status
+git add bevytor/assets
+git status
+nvim .gitignore
+git status
+git add .
+git satus
+git status
+git commit 
+git push
+clear
+tmux
+nvim
+nvimcd 
+cd .config/nvim
+nvim init.lua
+nvim
+nvim init.lua
+nvim
+nvim
+nvim
+ls /
+cd /Applications
+ls
+cd Steam.app
+ls
+ls -a
+cd Contents
+ls
+ls a
+ls -a
+cd MacOS
+ls
+cs public
+ls
+cd public
+ls
+cd .
+cd ..
+cd ..
+fd
+brew install fd
+fd
+fd config.vdf
+cd ..
+fd config.vdf
+cd [[
+cd ..
+fd config.vdf
+cd ..
+fd config.vdf
+killall steam
+pidof steam
+pid
+cd
+ls
+pid
+htop
+brew install htop
+htop
+nvim Users/aomame/Library/Application Support/Steam/config/config.vdf
+cd /Users/aomame/Library/Application Support/Steam/config/config.vdf
+nvim /Users/aomame/Library/Application Support/Steam/config/config.vdf
+ls
+fd config.vdf
+nvim Library/Application Support/Steam/config/config.vdf
+clear
+ls
+cd source
+ls
+git clone git@github.com:PawelBis/mind.nvim.git
+ls
+cd mind.nvim
+ls
+git branch feature/yank-content
+git status
+git checkout feature/yank-content
+ls
+cd lua
+clear
+rg
+clear
+clear
+rg copy_node_link
+nvim
+rg node.link
+rg "node \{"
+rg "Node \{"
+git status
+git add .
+git checkout master
+git status
+git commit -m "Add copy node data command"
+git push
+nvim
+nvim
+git log
+git rebase -i HEAD~3
+git status
+git push -f
+git commit --amend
+git push -f
+git add .
+git commit -mf
+git rebase -i HEAD~2
+git push -f
+nvim
+git status
+git add .
+git commit -m "Fix copy data\
+"
+git push
+git status
+git add .
+git commit -m "Add opts.edit.copy_node_data_format to vimsetreg"
+git push
+neovim
+nvim
+cd Source/bevytor
+ls
+nvim
+cargo build
+\:q
+exit
+cargo build
+cargo build
+cargo build
+exit
+cargo build
+cargo build
+cargo build
+cargo test
+cargo test
+cargo test
+cargo test
+cargo run
+cargo test
+cargo test
+cargo test
+cargo run
+cargo test
+cargo test
+cargo test
+cargo test
+?Strange
+\:w
+clear
+cargo test
+cargo test
+cargo test
+cargo test
+cargo test
+cargo test
+cargo test
+cargo test
+clean
+clean
+clear
+cargo test
+cargo test
+cargo build
+cargo build
+cargo test
+cargo build
+tmux ls
+tmux new -asa
+tmux new -Asa
+365 nowa
+455,91
+82249010440000505000047365 - 112,19
+exit
+exit
+fd godot
+ rm -rf Applications/Godot.app
+ rm -rf Library/Caches/Godot
+fd godot
+rm Downloads/Godot_v3.5-stable_osx.universal.zip
+rm Library/Saved\ Application\ State/org.godotengine.godot.savedState
+rm -rf Library/Saved\ Application\State/org.godotengine.godot.savedState
+rm -rf Source/gravy
+fd godot
+rm -rf Library/Application\ Support/Godot
+rm -rf Library/Saved\ Application\ State/org.godot*
+fd godot
+nvim .config/nvim/init.lua
+git status
+ls
+bash -c "$(curl -fsSL https://zmk.dev/setup.sh)"
+bash -c "$(curl -fsSL https://zmk.dev/setup.sh)"
+rm -rf zmk-config
+bash -c "$(curl -fsSL https://zmk.dev/setup.sh)"
+rm -rf zmk-config
+bash -c "$(curl -fsSL https://zmk.dev/setup.sh)"
+cd zmk-config
+ls
+cd config
+ls
+nvim corne.keymap
+git status
+git add .
+git commit -m"update  keymap"
+git push
+ls
+nvim corne.keymap
+git status
+git add .
+git commit -m "Fix underscore on layer 2"
+git push
+nvim corne.keymap
+ls
+nvim corne.conf
+git status
+git add .
+git commit -m enable_rgb
+git status
+git push
+nvim corne.conf
+git status
+nvim corne.conf
+nvim corne.conf
+git status
+git add .
+git commit -m "disable underglow"
+git push
+ls
+nvim corne.conf
+nvim corne.keymap
+git status
+git add -m "Add underglow fix"
+git add .
+git commit -m "Add underglow fix"
+git push
+nvim corne.keymap
+git status
+git diff
+exit
+ls
+cd zmk-config
+git reset --hard
+git status
+ls
+cd config
+ls
+nvim corne.conf
+git status
+git add .
+git commit -m "disable underglow"
+git push
+cd zmk-config
+con
+cd config
+ls
+nvim corne.keymap
+git status
+git add .
+git commit -m "Remove fix"
+git status
+git push
+cd zmk-config
+cd config
+nvim corne.keymap
+nvim
+brew install kicad
+cd Do
+cd Downloads
+ls
+mv reviung41.kicad_pcb.txt reviung41.kicad_pcb
+cd
+git clone https://github.com/gtips/reviung.git
+git log 
+cd zmk-config
+ls
+git log
+git checkout e210daa5ad04542a5ffcfb9a157cb0d7090d52d8
+git status
+git reset --soft
+git reset --soft master
+git reset --soft main
+git status
+git diff
+git status
+git commit -m "Enable rgbs"
+git push 
+git reset --hard origin/master
+git checkout master
+git checkout main
+git checkout e210daa5ad04542a5ffcfb9a157cb0d7090d52d8
+git reset --soft origin/master
+git reset --soft origin/main
+git checkout main
+git status
+git commit -m "Enable rgb for battery tests"
+git push
+git log
+git checkout d05d78822bd4507719b92619360cc459b9b7e4f2
+git reset --soft main
+git checkout main
+git commit -m "Add underglow fix"
+git push
+cd config
+nvim corne.keymap
+git status
+git add .
+git commit -m "Add external power toggle"
+git push 
+git pull
+ls
+nvim corne.conf
+git status
+git add .
+git commit -m "Change BT connection config"
+git push 
+blueutil
+brew install blueutil
+brew --inquiry
+blueutil --inquiry
+blueutil --inquiry
+blueutil --inquiry
+blueutil --inquiry
+blueutil --inquiry
+blueutil --inquiry
+blueutil --inquiry
+blueutil --inquiry
+blueutil --inquiry

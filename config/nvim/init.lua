@@ -79,7 +79,8 @@ require("lazy").setup({
 
       }
     end
-  }
+  },
+  "mhartington/formatter.nvim",
 })
 
 require("fidget").setup{}
@@ -220,6 +221,8 @@ wk.register({
     name = "Refactor",
     r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
     a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
+    f = { ":Format<CR>", "Format" },
+    F = { ":FormatWrite<CR>", "Format and save" },
   },
   l = {
     name = "Lsp",
@@ -330,3 +333,28 @@ keymap("n", "<C-w>o", "<C-w>v<C-w>l<cmd>Telescope find_files<CR>", noremaps)
 
 -- Terminal
 keymap("t", "<Esc>", "<C-\\><C-n>", noremaps)
+
+-- Formatter
+local utils = require("formatter.util")
+require("formatter").setup {
+  logging = true,
+  log_level = vim.log.levels.WARN,
+  filetype = {
+    cpp = {
+      function()
+        return {
+          exe = "clang-format",
+          args = {
+            "-assume-filename",
+            utils.escape_path(utils.get_current_buffer_file_name()),
+          },
+          stdin = true,
+          try_node_modules = true,
+        }
+      end
+    },
+    ["*"] = {
+      require("formatter.filetypes.any").remove_trailing_whitespace,
+    },
+  }
+}

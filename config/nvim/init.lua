@@ -81,6 +81,7 @@ require("lazy").setup({
     end
   },
   "mhartington/formatter.nvim",
+
 })
 
 require("fidget").setup{}
@@ -183,6 +184,16 @@ vim.api.nvim_exec(
 	augroup rust-tabs
 		autocmd!
 		autocmd FileType rust lua SetupRustTabs()
+	augroup end
+	]],
+	false
+)
+
+vim.api.nvim_exec(
+	[[
+	augroup cpp-tabs
+		autocmd!
+		autocmd FileType cpp lua SetupRustTabs()
 	augroup end
 	]],
 	false

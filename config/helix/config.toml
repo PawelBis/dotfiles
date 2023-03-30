@@ -8,3 +8,8 @@ mouse = false
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[editor.indent-guides]
+render = true
+character = "╎"
+skip-levels = 1

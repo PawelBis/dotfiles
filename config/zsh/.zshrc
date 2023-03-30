@@ -1,8 +1,9 @@
 eval "$(starship init zsh)"
 path+="/usr/bin/python3"
 path+="/Users/aomame/Library/Python/3.9/bin"
-export PATH
+export PATH=$PATH:$HOME/Source/vcpkg
 export DOTNET_ROOT=/usr/local/share/dotnet/
+export TERMINFO_DIRS=$HOME/.local/share/terminfo
 
 bindkey -v
 export KEYTIMEOUT=1

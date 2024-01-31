@@ -1,4 +1,10 @@
 -----------------------------------------------------------
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
+-----------------------------------------------------------
 -- Theme related stuff
 vim.cmd [[set signcolumn=number]]
 vim.cmd [[set splitbelow]]
@@ -51,9 +57,14 @@ require("lazy").setup({
     }
   },
   "nvim-telescope/telescope-ui-select.nvim",
-  { "kyazdani42/nvim-tree.lua", dependencies = {
-      { "kyazdani42/nvim-web-devicons", lazy = false },
-    }
+  { "nvim-tree/nvim-tree.lua", 
+    lazy = false,
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons", lazy = false },
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end
   },
   { "folke/which-key.nvim", config = function()
       require("which-key").setup {
@@ -85,7 +96,7 @@ require("lazy").setup({
 })
 
 require("fidget").setup{}
-require("nvim-tree").setup()
+-- require("nvim-tree").setup()
 require("nvim-web-devicons").setup{default = true}
 require("telescope").setup {
   extensions = {
@@ -97,6 +108,7 @@ require("telescope").setup {
   }
 }
 require("telescope").load_extension("ui-select")
+icons = require("nvim-web-devicons").get_icons()
 
 function context()
   return "CONTEXT"
@@ -220,18 +232,12 @@ vim.api.nvim_exec(
 -- WhichKey setup
 local wk = require("which-key")
 wk.register({
-  f = {
-    name = "File",
-    f = { "<cmd>Telescope git_files<CR>", "Find File" },
-    r = { "<cmd>Telescope oldfiles<CR>", "Open Recent File" },
-    t = { "<cmd>NvimTreeToggle<CR>", "Show Files Tree" },
-    v = { "<C-w>v<C-w>l<cmd>Telescope find_files<CR>", "Open in vertical split" },
-    s = { "<C-w>s<C-w>l<cmd>Telescope find_files<CR>", "Open in horizontal split" },
-  },
+  f = { "<cmd>Telescope git_files<CR>", "Find File" },
+  s = { "<cmd>Telescope live_grep<CR>", "Grep"},
+  a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
   r = {
     name = "Refactor",
     r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-    a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
     f = { ":Format<CR>", "Format" },
     F = { ":FormatWrite<CR>", "Format and save" },
   },
@@ -255,14 +261,6 @@ wk.register({
     s = { "<cmd>Telescope git_status<CR>", "Status" },
     t = { "<cmd>Telescope git_stash<CR>", "Stash" },
   },
-  s = {
-    name = "Search",
-    s = { "<cmd>Telescope live_grep<CR>", "Grep"},
-    S = { "<cmd>Telescope search_history<CR>", "Search History"},
-    t = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Buffer Fuzzy Find"},
-    c = { "<cmd>Telescope command_history<CR>", "Command History"},
-    b = { "<cmd>Telescope buffers<CR>", "Buffers"},
-  },
   t = {
     name = "Toggle", 
     t = { ":FloatermToggle<CR>", "Terminal" },
@@ -282,6 +280,9 @@ wk.register({
 local keymap = vim.api.nvim_set_keymap
 local noremaps = { noremap = true, silent = true }
 vim.g.mapleader = ' '
+
+-- Normal mode list buffers
+keymap("n", "  ", "<cmd>Telescope buffers<CR>", {})
 
 -- Insert mode h/j/k/l
 keymap("i", "<C-h>", "<Left>", noremaps)

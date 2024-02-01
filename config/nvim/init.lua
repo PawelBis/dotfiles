@@ -86,7 +86,7 @@ require("lazy").setup({
   },
   "voldikss/vim-floaterm",
   { "folke/trouble.nvim", config = function()
-      require("trouble").setup{
+      require("trouble").setup {
 
       }
     end
@@ -95,9 +95,9 @@ require("lazy").setup({
 
 })
 
-require("fidget").setup{}
+require("fidget").setup {}
 -- require("nvim-tree").setup()
-require("nvim-web-devicons").setup{default = true}
+require("nvim-web-devicons").setup {default = true}
 require("telescope").setup {
   extensions = {
     ["ui-select"] = {
@@ -115,14 +115,14 @@ function context()
 end
 
 if vim.fn.has("nvim-0.8") == 1 then
-  require("lualine").setup{
+  require("lualine").setup {
     options = {
       theme = "catppuccin"
     },
     sections = {
       lualine_a = {"mode"},
       lualine_b = {"branch", "diff", "diagnostics"},
-      lualine_c = {"filename"},
+      lualine_c = { {"filename", file_status = true, path = 1} },
       lualine_x = {"lsp_progress" , "filetype"},
       lualine_y = {},
       lualine_z = {}
@@ -136,7 +136,7 @@ if vim.fn.has("nvim-0.8") == 1 then
     }
   }
 else
-  require("lualine").setup{
+  require("lualine").setup {
     options = {
       theme = "tokyonight"
     },
@@ -195,17 +195,7 @@ vim.api.nvim_exec(
 	[[
 	augroup rust-tabs
 		autocmd!
-		autocmd FileType rust lua SetupRustTabs()
-	augroup end
-	]],
-	false
-)
-
-vim.api.nvim_exec(
-	[[
-	augroup cpp-tabs
-		autocmd!
-		autocmd FileType cpp lua SetupRustTabs()
+		autocmd FileType rust,cpp lua SetupRustTabs()
 	augroup end
 	]],
 	false
@@ -221,7 +211,7 @@ vim.api.nvim_exec(
 	[[
 	augroup lua-tabs
 		autocmd!
-		autocmd FileType lua lua SetupLuaTabs()
+		autocmd FileType lua,javascript,css,typescript,html lua SetupLuaTabs()
 	augroup end
 	]],
 	false
@@ -281,8 +271,10 @@ local keymap = vim.api.nvim_set_keymap
 local noremaps = { noremap = true, silent = true }
 vim.g.mapleader = ' '
 
--- Normal mode list buffers
+-- Normal mode
 keymap("n", "  ", "<cmd>Telescope buffers<CR>", {})
+keymap("n", " y", '"+y', {})
+keymap("n", " p", '"+p', {})
 
 -- Insert mode h/j/k/l
 keymap("i", "<C-h>", "<Left>", noremaps)

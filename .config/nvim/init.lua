@@ -30,7 +30,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { "catppuccin/nvim", name = "catppuccin", config = function()
       require("catppuccin").setup {
-        flavour = "mocha",
+        flavour = "latte",
         vim.cmd.colorscheme "catppuccin"
       }
     end
@@ -177,6 +177,11 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 
 require("treesitter").setup()
+require("nvim-treesitter.configs").setup {
+  highlight = {
+    enabled = true
+  }
+}
 local cmp = require("compare")
 cmp.setup()
 require("lsp").setup(cmp.capabilities)
@@ -190,6 +195,13 @@ function SetupRustTabs()
 	vim.o.tabstop = 4
 	vim.o.shiftwidth = 4
 end
+
+vim.api.nvim_exec(
+  [[
+  autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+  ]],
+  false
+)
 
 vim.api.nvim_exec(
 	[[
@@ -211,7 +223,7 @@ vim.api.nvim_exec(
 	[[
 	augroup lua-tabs
 		autocmd!
-		autocmd FileType lua,javascript,css,typescript,html lua SetupLuaTabs()
+		autocmd FileType lua,javascript,css,typescript,html,typescriptreact lua SetupLuaTabs()
 	augroup end
 	]],
 	false
@@ -222,7 +234,7 @@ vim.api.nvim_exec(
 -- WhichKey setup
 local wk = require("which-key")
 wk.register({
-  f = { "<cmd>Telescope git_files<CR>", "Find File" },
+  f = { "<cmd>Telescope find_files<CR>", "Find File" },
   s = { "<cmd>Telescope live_grep<CR>", "Grep"},
   a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
   r = {

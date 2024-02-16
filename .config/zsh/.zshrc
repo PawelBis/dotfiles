@@ -5,6 +5,9 @@ export PATH=$PATH:$HOME/Source/vcpkg
 export DOTNET_ROOT=/usr/local/share/dotnet/
 export TERMINFO_DIRS=$HOME/.local/share/terminfo
 export XDG_CONFIG_HOME=$HOME/.config
+export EDITOR=/opt/homebrew/bin/nvim
+export GPG_TTY=$(tty)
+
 
 bindkey -v
 export KEYTIMEOUT=1

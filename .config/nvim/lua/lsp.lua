@@ -2,6 +2,10 @@ local model = {}
 
 function model.setup(in_capabilities) 
   local lsp = require("lspconfig")
+  local navic = require("nvim-navic")
+  local on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
 
   -- Rust
   lsp.rust_analyzer.setup{
@@ -12,7 +16,8 @@ function model.setup(in_capabilities)
           enable = false;
         }
       }
-    }
+    },
+    on_attach = on_attach,
   }
 
   -- Lua
@@ -39,6 +44,7 @@ function model.setup(in_capabilities)
         },
       },
     },
+    on_attach = on_attach,
   }
 
   -- C++

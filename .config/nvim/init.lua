@@ -14,7 +14,8 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = ""
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local data_path = vim.fn.stdpath("data")
+local lazypath = data_path .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -40,8 +41,16 @@ require("lazy").setup({
     }
   },
   "j-hui/fidget.nvim",
-  "SmiteshP/nvim-navic",
-  "neovim/nvim-lspconfig",
+  { "neovim/nvim-lspconfig", dependencies = {
+    {
+      "SmiteshP/nvim-navbuddy",
+      dependencies = {
+        "SmiteshP/nvim-navic",
+        "MunifTanjim/nui.nvim",
+      },
+      opts = { lsp = { auto_attach = true }}
+    }
+  }},
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
@@ -52,12 +61,40 @@ require("lazy").setup({
   "hrsh7th/vim-vsnip",
   "rafamadriz/friendly-snippets",
   { "nvim-treesitter/nvim-treesitter", build = "TSUpdate" },
+  { "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local neorg_workspaces = data_path .. "/neorg_workspaces"
+      require("neorg").setup {
+        load = {
+          ["core.defaults"] = {},
+          ["core.concealer"] = {},
+          ["core.keybinds"] = {
+            config = {default_keybinds = true}
+          },
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                scratchpad = neorg_workspaces .. "/.scratchpad",
+                notes = neorg_workspaces .. "/notes",
+              },
+              default_workspace = "scratchpad",
+            },
+          },
+        },
+      }
+
+      vim.wo.foldlevel = 99
+      vim.wo.conceallevel = 2
+    end,
+  },
   { "nvim-telescope/telescope.nvim", dependencies = {
       "nvim-lua/plenary.nvim"
     }
   },
   "nvim-telescope/telescope-ui-select.nvim",
-  { "nvim-tree/nvim-tree.lua", 
+  { "nvim-tree/nvim-tree.lua",
     lazy = false,
     dependencies = {
       { "nvim-tree/nvim-web-devicons", lazy = false },
@@ -73,12 +110,6 @@ require("lazy").setup({
     end
   },
   "nvim-treesitter/nvim-treesitter-context",
-  {
-    "phaazon/mind.nvim",
-    config = function()
-      require("mind").setup()
-    end
-  },
   { "kylechui/nvim-surround", version = "*",
     config = function()
       require("nvim-surround").setup({})
@@ -108,10 +139,26 @@ require("telescope").setup {
   }
 }
 require("telescope").load_extension("ui-select")
-icons = require("nvim-web-devicons").get_icons()
 
-function context()
-  return "CONTEXT"
+local function context()
+  local buffname = vim.fn.expand('%')
+  local buffname_to_context = {}
+  buffname_to_context["Trouble"] = "Diagnostics"
+  buffname_to_context["NvimTree_1"] = "File Explorer"
+  local ctx = buffname_to_context[buffname]
+  if ctx == nil then
+    ctx = "Context"
+  end
+
+  return ctx
+end
+
+local function navic_is_avail()
+  return require("nvim-navic").is_available(vim.fn.bufnr())
+end
+
+local function navic_get_location()
+  return require("nvim-navic").get_location({ click = true }, vim.fn.bufnr())
 end
 
 if vim.fn.has("nvim-0.8") == 1 then
@@ -127,11 +174,11 @@ if vim.fn.has("nvim-0.8") == 1 then
       lualine_y = {},
       lualine_z = {}
     },
-    winbar = { 
+    winbar = {
       lualine_a = { {context} },
-      lualine_b = { { require("nvim-navic").get_location, cond = require("nvim-navic").is_available }, }
+      lualine_b = { { navic_get_location, cond = navic_is_avail }, }
     },
-    inactive_winbar = { 
+    inactive_winbar = {
       lualine_a = { {context} },
     }
   }
@@ -230,13 +277,17 @@ vim.api.nvim_exec(
 )
 
 
+
 -----------------------------------------------------------
 -- WhichKey setup
 local wk = require("which-key")
 wk.register({
+  ["<space>"] = { "<cmd>Telescope buffers<CR>", "List buffers" },
   f = { "<cmd>Telescope find_files<CR>", "Find File" },
   s = { "<cmd>Telescope live_grep<CR>", "Grep"},
   a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
+  y = { '"+y', "Copy to clipboard" },
+  p = { '"+p', "Copy from clipboard" },
   r = {
     name = "Refactor",
     r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
@@ -264,17 +315,14 @@ wk.register({
     t = { "<cmd>Telescope git_stash<CR>", "Stash" },
   },
   t = {
-    name = "Toggle", 
+    name = "Toggle",
     t = { ":FloatermToggle<CR>", "Terminal" },
     g = { ":FloatermNew lazygit<CR>", "Git" },
-    n = { ":set rnu!<CR>", "Relative Numbers" },
+    r = { ":set rnu!<CR>", "Relative Numbers" },
     p = { ":NvimTreeToggle<CR>", "Project Explorer" },
+    n = { ":Navbuddy", "Navbuddy"},
+    x = { ":Neorg", "Navbuddy"},
   },
-  m = {
-    name = "Mind notes",
-    m = { ":MindOpenMain<CR>", "Open global mind notes" },
-    c = { ":MindClose<CR>", "Close mind notes" },
-  }
 }, {prefix = "<leader>"})
 
 -----------------------------------------------------------
@@ -282,11 +330,7 @@ wk.register({
 local keymap = vim.api.nvim_set_keymap
 local noremaps = { noremap = true, silent = true }
 vim.g.mapleader = ' '
-
--- Normal mode
-keymap("n", "  ", "<cmd>Telescope buffers<CR>", {})
-keymap("n", " y", '"+y', {})
-keymap("n", " p", '"+p', {})
+vim.g.maplocalleader = ','
 
 -- Insert mode h/j/k/l
 keymap("i", "<C-h>", "<Left>", noremaps)
@@ -335,20 +379,12 @@ keymap("n", "<C-i>", "<C-i>zzzv", noremaps)
 -- Clear highlighting with ESC
 keymap("n", "<ESC>", ":noh<CR><ESC>", noremaps)
 
--- Telescope
--- keymap("n", "<C-p>", "<cmd>Telescope find_files<CR>", noremaps)
--- keymap("n", "<leader>s", "<cmd>Telescope live_grep<CR>", noremaps)
--- keymap("n", "<leader>b", "<cmd>Telescope buffers<CR>", noremaps)
--- keymap("n", "<leader>h", "<cmd>Telescope search_history<CR>", noremaps)
--- keymap("n", "<leader>h", "<cmd>Telescope lsp_document_symbols<CR>", noremaps)
--- keymap("n", "<leader>d", "<cmd>Trouble<CR>", noremaps)
-
 -- Windows
 keymap("n", "<C-w>v", "<C-w>v<C-w>l", noremaps)
 keymap("n", "<C-w>o", "<C-w>v<C-w>l<cmd>Telescope find_files<CR>", noremaps)
 
 -- Terminal
-keymap("t", "<Esc>", "<C-\\><C-n>", noremaps)
+keymap("t", "<Leader>tt", "<C-\\><C-n>:FloatermToggle<CR>", noremaps)
 
 -- Formatter
 local utils = require("formatter.util")

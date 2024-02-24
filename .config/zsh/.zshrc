@@ -8,6 +8,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=/opt/homebrew/bin/nvim
 export GPG_TTY=$(tty)
 
+alias cds="cd ~/Source"
 
 bindkey -v
 export KEYTIMEOUT=1

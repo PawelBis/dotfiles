@@ -29,28 +29,36 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  { "catppuccin/nvim", name = "catppuccin", config = function()
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    config = function()
       require("catppuccin").setup {
         flavour = "latte",
         vim.cmd.colorscheme "catppuccin"
       }
     end
   },
-  { "nvim-lualine/lualine.nvim", dependencies = {
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
       { "kyazdani42/nvim-web-devicons", lazy = false },
     }
   },
   "j-hui/fidget.nvim",
-  { "neovim/nvim-lspconfig", dependencies = {
-    {
-      "SmiteshP/nvim-navbuddy",
-      dependencies = {
-        "SmiteshP/nvim-navic",
-        "MunifTanjim/nui.nvim",
-      },
-      opts = { lsp = { auto_attach = true }}
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim",
+        },
+        opts = { lsp = { auto_attach = true } }
+      }
     }
-  }},
+  },
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
@@ -61,7 +69,8 @@ require("lazy").setup({
   "hrsh7th/vim-vsnip",
   "rafamadriz/friendly-snippets",
   { "nvim-treesitter/nvim-treesitter", build = "TSUpdate" },
-  { "nvim-neorg/neorg",
+  {
+    "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
@@ -71,7 +80,7 @@ require("lazy").setup({
           ["core.defaults"] = {},
           ["core.concealer"] = {},
           ["core.keybinds"] = {
-            config = {default_keybinds = true}
+            config = { default_keybinds = true }
           },
           ["core.dirman"] = {
             config = {
@@ -89,12 +98,15 @@ require("lazy").setup({
       vim.wo.conceallevel = 2
     end,
   },
-  { "nvim-telescope/telescope.nvim", dependencies = {
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
       "nvim-lua/plenary.nvim"
     }
   },
   "nvim-telescope/telescope-ui-select.nvim",
-  { "nvim-tree/nvim-tree.lua",
+  {
+    "nvim-tree/nvim-tree.lua",
     lazy = false,
     dependencies = {
       { "nvim-tree/nvim-web-devicons", lazy = false },
@@ -103,32 +115,37 @@ require("lazy").setup({
       require("nvim-tree").setup {}
     end
   },
-  { "folke/which-key.nvim", config = function()
+  {
+    "folke/which-key.nvim",
+    config = function()
       require("which-key").setup {
         plugins = { spelling = { enabled = true, suggestions = 20, } }
       }
     end
   },
   "nvim-treesitter/nvim-treesitter-context",
-  { "kylechui/nvim-surround", version = "*",
+  {
+    "kylechui/nvim-surround",
+    version = "*",
     config = function()
       require("nvim-surround").setup({})
     end,
   },
   "voldikss/vim-floaterm",
-  { "folke/trouble.nvim", config = function()
+  {
+    "folke/trouble.nvim",
+    config = function()
       require("trouble").setup {
 
       }
     end
   },
-  "mhartington/formatter.nvim",
 
 })
 
 require("fidget").setup {}
 -- require("nvim-tree").setup()
-require("nvim-web-devicons").setup {default = true}
+require("nvim-web-devicons").setup { default = true }
 require("telescope").setup {
   extensions = {
     ["ui-select"] = {
@@ -167,19 +184,19 @@ if vim.fn.has("nvim-0.8") == 1 then
       theme = "catppuccin"
     },
     sections = {
-      lualine_a = {"mode"},
-      lualine_b = {"branch", "diff", "diagnostics"},
-      lualine_c = { {"filename", file_status = true, path = 1} },
-      lualine_x = {"lsp_progress" , "filetype"},
+      lualine_a = { "mode" },
+      lualine_b = { "branch", "diff", "diagnostics" },
+      lualine_c = { { "filename", file_status = true, path = 1 } },
+      lualine_x = { "lsp_progress", "filetype" },
       lualine_y = {},
       lualine_z = {}
     },
     winbar = {
-      lualine_a = { {context} },
+      lualine_a = { { context } },
       lualine_b = { { navic_get_location, cond = navic_is_avail }, }
     },
     inactive_winbar = {
-      lualine_a = { {context} },
+      lualine_a = { { context } },
     }
   }
 else
@@ -188,10 +205,10 @@ else
       theme = "tokyonight"
     },
     sections = {
-      lualine_a = {"mode"},
-      lualine_b = {"branch", "diff", "diagnostics"},
-      lualine_c = {"filename"},
-      lualine_x = {"lsp_progress" , "filetype"},
+      lualine_a = { "mode" },
+      lualine_b = { "branch", "diff", "diagnostics" },
+      lualine_c = { "filename" },
+      lualine_x = { "lsp_progress", "filetype" },
       lualine_y = {},
       lualine_z = {}
     },
@@ -233,14 +250,14 @@ local cmp = require("compare")
 cmp.setup()
 require("lsp").setup(cmp.capabilities)
 
-vim.wo.foldlevel= 20
+vim.wo.foldlevel = 20
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
 function SetupRustTabs()
-	vim.o.expandtab = true
-	vim.o.tabstop = 4
-	vim.o.shiftwidth = 4
+  vim.o.expandtab = true
+  vim.o.tabstop = 4
+  vim.o.shiftwidth = 4
 end
 
 vim.api.nvim_exec(
@@ -251,29 +268,29 @@ vim.api.nvim_exec(
 )
 
 vim.api.nvim_exec(
-	[[
+  [[
 	augroup rust-tabs
 		autocmd!
 		autocmd FileType rust,cpp lua SetupRustTabs()
 	augroup end
 	]],
-	false
+  false
 )
 
 function SetupLuaTabs()
-	vim.o.expandtab = true
-	vim.o.tabstop = 2
-	vim.o.shiftwidth = 2
+  vim.o.expandtab = true
+  vim.o.tabstop = 2
+  vim.o.shiftwidth = 2
 end
 
 vim.api.nvim_exec(
-	[[
+  [[
 	augroup lua-tabs
 		autocmd!
 		autocmd FileType lua,javascript,css,typescript,html,typescriptreact lua SetupLuaTabs()
 	augroup end
 	]],
-	false
+  false
 )
 
 
@@ -284,7 +301,7 @@ local wk = require("which-key")
 wk.register({
   ["<space>"] = { "<cmd>Telescope buffers<CR>", "List buffers" },
   f = { "<cmd>Telescope find_files<CR>", "Find File" },
-  s = { "<cmd>Telescope live_grep<CR>", "Grep"},
+  s = { "<cmd>Telescope live_grep<CR>", "Grep" },
   a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
   y = { '"+y', "Copy to clipboard" },
   p = { '"+p', "Copy from clipboard" },
@@ -297,7 +314,7 @@ wk.register({
   l = {
     name = "Lsp",
     r = { "<cmd>Telescope lsp_references<CR>", "References" },
-    f = { "<cmd>lua vim.lsp.buf.formatting<CR>", "Formatting" },
+    f = { "<cmd>lua vim.lsp.buf.format { async = true }<CR>", "Formatting" },
     i = { "<cmd>Telescope lsp_incoming_calls<CR>", "Incoming Calls" },
     o = { "<cmd>Telescope lsp_outgoing_calls<CR>", "Outgoing Calls" },
     s = { "<cmd>Telescope lsp_document_symbols<CR>", "Local Symbols" },
@@ -320,10 +337,10 @@ wk.register({
     g = { ":FloatermNew lazygit<CR>", "Git" },
     r = { ":set rnu!<CR>", "Relative Numbers" },
     p = { ":NvimTreeToggle<CR>", "Project Explorer" },
-    n = { ":Navbuddy", "Navbuddy"},
-    x = { ":Neorg", "Navbuddy"},
+    n = { ":Navbuddy", "Navbuddy" },
+    x = { ":Neorg", "Navbuddy" },
   },
-}, {prefix = "<leader>"})
+}, { prefix = "<leader>" })
 
 -----------------------------------------------------------
 -- Keybindings
@@ -346,14 +363,14 @@ keymap("i", "?", "?<C-g>u", {})
 
 -- Save jumps > 5 to jumplist
 keymap("n", "k", "(v:count > 4 ? \"m'\" . v:count : \"\") . 'gk'", {
-noremap = true,
-expr = true,
-silent = true,
+  noremap = true,
+  expr = true,
+  silent = true,
 })
 keymap("n", "j", "(v:count > 4 ? \"m'\" . v:count : \"\") . 'gj'", {
-noremap = true,
-expr = true,
-silent = true,
+  noremap = true,
+  expr = true,
+  silent = true,
 })
 
 -- Lsp
@@ -385,28 +402,3 @@ keymap("n", "<C-w>o", "<C-w>v<C-w>l<cmd>Telescope find_files<CR>", noremaps)
 
 -- Terminal
 keymap("t", "<Leader>tt", "<C-\\><C-n>:FloatermToggle<CR>", noremaps)
-
--- Formatter
-local utils = require("formatter.util")
-require("formatter").setup {
-  logging = true,
-  log_level = vim.log.levels.WARN,
-  filetype = {
-    cpp = {
-      function()
-        return {
-          exe = "clang-format",
-          args = {
-            "-assume-filename",
-            utils.escape_path(utils.get_current_buffer_file_name()),
-          },
-          stdin = true,
-          try_node_modules = true,
-        }
-      end
-    },
-    ["*"] = {
-      require("formatter.filetypes.any").remove_trailing_whitespace,
-    },
-  }
-}

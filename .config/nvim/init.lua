@@ -10,6 +10,10 @@ vim.cmd [[set signcolumn=number]]
 vim.cmd [[set splitbelow]]
 vim.cmd [[set laststatus=3]]
 vim.cmd [[set cursorline]]
+-- Enable '%' jumping for '<' and '>'
+vim.cmd [[set matchpairs+=<:>]]
+-- Enable '%' jumping for '=' and ';'
+vim.cmd [[set matchpairs+==:;]]
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = ""
@@ -55,7 +59,7 @@ require("lazy").setup({
           "SmiteshP/nvim-navic",
           "MunifTanjim/nui.nvim",
         },
-        opts = { lsp = { auto_attach = true } }
+        opts = { lsp = { auto_attach = true } },
       }
     }
   },
@@ -128,7 +132,12 @@ require("lazy").setup({
     "kylechui/nvim-surround",
     version = "*",
     config = function()
-      require("nvim-surround").setup({})
+      require("nvim-surround").setup({
+        keymaps = {
+          normal = "s",
+          normal_cur = "S",
+        },
+      })
     end,
   },
   "voldikss/vim-floaterm",
@@ -169,6 +178,12 @@ local function context()
 
   return ctx
 end
+
+require("nvim-navic").setup({
+  lsp = {
+    auto_attach = true,
+  },
+})
 
 local function navic_is_avail()
   return require("nvim-navic").is_available(vim.fn.bufnr())

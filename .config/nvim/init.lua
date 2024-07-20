@@ -258,8 +258,8 @@ vim.api.nvim_create_autocmd("CursorHold", {
 require("treesitter").setup()
 require("nvim-treesitter.configs").setup {
   highlight = {
-    enabled = true
-  }
+    enabled = true,
+  },
 }
 local cmp = require("compare")
 cmp.setup()
@@ -275,21 +275,21 @@ function SetupRustTabs()
   vim.o.shiftwidth = 4
 end
 
-vim.api.nvim_exec(
+vim.api.nvim_exec2(
   [[
   autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
   ]],
-  false
+  {}
 )
 
-vim.api.nvim_exec(
+vim.api.nvim_exec2(
   [[
 	augroup rust-tabs
 		autocmd!
-		autocmd FileType rust,cpp lua SetupRustTabs()
+		autocmd FileType rust,cpp,gdscript lua SetupRustTabs()
 	augroup end
 	]],
-  false
+  {}
 )
 
 function SetupLuaTabs()
@@ -298,14 +298,14 @@ function SetupLuaTabs()
   vim.o.shiftwidth = 2
 end
 
-vim.api.nvim_exec(
+vim.api.nvim_exec2(
   [[
 	augroup lua-tabs
 		autocmd!
 		autocmd FileType lua,javascript,css,typescript,html,typescriptreact lua SetupLuaTabs()
 	augroup end
 	]],
-  false
+  {}
 )
 
 
@@ -417,3 +417,5 @@ keymap("n", "<C-w>o", "<C-w>v<C-w>l<cmd>Telescope find_files<CR>", noremaps)
 
 -- Terminal
 keymap("t", "<Leader>tt", "<C-\\><C-n>:FloatermToggle<CR>", noremaps)
+
+gd_initialised = false

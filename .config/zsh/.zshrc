@@ -7,6 +7,11 @@ export TERMINFO_DIRS=$HOME/.local/share/terminfo
 export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=/opt/homebrew/bin/nvim
 export GPG_TTY=$(tty)
+export VULKAN_VERSION="1.3.283.0"
+export VULKAN_SDK=$HOME/VulkanSDK/$VULKAN_VERSION/macOs
+export DYLD_FALLBACK_LIBRARY_PATH=$VULKAN_SDK/lib
+export VK_ICD_FILENAMES=$VULKAN_SDK/share/vulkan/icd.d/MoltenVK_icd.json
+export VK_LAYER_PATH=$VULKAN_SDK/share/vulkan/explicit_layer.d
 
 alias cds="cd ~/Source"
 
@@ -33,3 +38,7 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+export VISUAL=nvim
+autoload edit-command-line; zle -N edit-command-line
+bindkey -M vicmd v edit-command-line

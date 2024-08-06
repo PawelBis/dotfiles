@@ -44,8 +44,10 @@ function model.setup(in_capabilities)
   -- C++
   lsp.clangd.setup{}
 
-  -- Typescript
-  lsp.tsserver.setup{}
+  lsp.zls.setup{
+    capabilities = in_capabilities,
+  }
+
 end
 
 return model

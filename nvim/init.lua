@@ -132,12 +132,7 @@ require("lazy").setup({
     "kylechui/nvim-surround",
     version = "*",
     config = function()
-      require("nvim-surround").setup({
-        keymaps = {
-          normal = "s",
-          normal_cur = "S",
-        },
-      })
+      require("nvim-surround").setup()
     end,
   },
   "voldikss/vim-floaterm",
@@ -386,7 +381,7 @@ wk.register({
     g = { ":FloatermNew lazygit<CR>", "Git" },
     r = { ":set rnu!<CR>", "Relative Numbers" },
     p = { ":NvimTreeToggle<CR>", "Project Explorer" },
-    n = { ":Navbuddy", "Navbuddy" },
+    n = { ":Navbuddy<CR>", "Navbuddy" },
     x = { ":Neorg", "Navbuddy" },
   },
   c = { ":Telescope project_cli_commands open<cr>", "Open CLI commands" },

@@ -1,1 +1,2 @@
-font-family = "CaskaydiaCove Nerd Font Mono"
+font-family = CaskaydiaCove Nerd Font Mono
+command = "/bin/zsh -l -c zellij"

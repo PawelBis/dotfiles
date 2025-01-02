@@ -4,7 +4,7 @@ function model.setup(in_capabilities)
   local lsp = require("lspconfig")
 
   -- Rust
-  lsp.rust_analyzer.setup{
+  lsp.rust_analyzer.setup {
     capabilities = in_capabilities,
     settings = {
       ["rust-analyzer"] = {
@@ -44,10 +44,31 @@ function model.setup(in_capabilities)
   -- C++
   lsp.clangd.setup{}
 
-  lsp.zls.setup{
+  -- Zig
+  lsp.zls.setup {
     capabilities = in_capabilities,
   }
 
+  -- Typescript
+  lsp.ts_ls.setup{
+    capabilities = in_capabilities,
+  }
+
+  -- Tailwindcss
+  lsp.tailwindcss.setup{}
+
+  -- Godot
+  lsp.gdscript.setup {
+    capabilities = in_capabilities,
+  }
+
+  lsp.gopls.setup {
+    capabilities = in_capabilities,
+  }
+
+  lsp.pyright.setup{
+    capabilities = in_capabilities,
+  }
 end
 
 return model

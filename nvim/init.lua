@@ -145,40 +145,49 @@ require("lazy").setup({
     end
   },
   {
-    "dimaportenko/project-cli-commands.nvim",
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    ft = "markdown",
     dependencies = {
-      "akinsho/toggleterm.nvim",
-      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
     },
+    opts = {
+      workspaces = {
+        {
+          name = "Books",
+          path = "~/vaults/Books",
+        },
+        {
+          name = "Code",
+          path = "~/vaults/Code",
+        }
+      },
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+  {
+    "seblj/roslyn.nvim",
+    ft = "cs",
+    opts = {}
+  },
+  {
+    "MagicDuck/grug-far.nvim",
     config = function()
-      local OpenActions = require("project_cli_commands.open_actions")
-      local RunActions = require("project_cli_commands.actions")
-
-      local config = {
-        running_telescope_mapping = {
-          ["<C-f>"] = RunActions.open_float,
-          ["<C-v>"] = RunActions.open_vertical,
-          ["<C-h>"] = RunActions.open_horizontal,
-        },
-        open_telescope_mapping = {
-          { mode = 'i', key = '<CR>',  action = OpenActions.execute_script_vertical },
-          { mode = 'n', key = '<CR>',  action = OpenActions.execute_script_vertical },
-          { mode = 'i', key = '<C-h>', action = OpenActions.execute_script },
-          { mode = 'n', key = '<C-h>', action = OpenActions.execute_script },
-          { mode = 'i', key = '<C-i>', action = OpenActions.execute_script_with_input },
-          { mode = 'n', key = '<C-i>', action = OpenActions.execute_script_with_input },
-          { mode = 'i', key = '<C-c>', action = OpenActions.copy_command_clipboard },
-          { mode = 'n', key = '<C-c>', action = OpenActions.copy_command_clipboard },
-          { mode = 'i', key = '<C-f>', action = OpenActions.execute_script_float },
-          { mode = 'n', key = '<C-f>', action = OpenActions.execute_script_float },
-          { mode = 'i', key = '<C-v>', action = OpenActions.execute_script_vertical },
-          { mode = 'n', key = '<C-v>', action = OpenActions.execute_script_vertical },
-        },
-      }
-
-      require("project_cli_commands").setup(config)
+      require('grug-far').setup({
+        -- options, see Configuration section below
+        -- there are no required options atm
+        -- engine = 'ripgrep' is default, but 'astgrep' can be specified
+      });
     end
-  }
+  },
 })
 
 require("fidget").setup {}
@@ -298,8 +307,14 @@ vim.wo.foldlevel = 20
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
-function SetupRustTabs()
+function SetupSpaceTabs()
   vim.o.expandtab = true
+  vim.o.tabstop = 4
+  vim.o.shiftwidth = 4
+end
+
+function SetupHardTabs()
+  vim.o.expandtab = false
   vim.o.tabstop = 4
   vim.o.shiftwidth = 4
 end
@@ -313,9 +328,19 @@ vim.api.nvim_exec2(
 
 vim.api.nvim_exec2(
   [[
-	augroup rust-tabs
+	augroup space-tabs
 		autocmd!
-		autocmd FileType rust,cpp,gdscript lua SetupRustTabs()
+		autocmd FileType rust,cpp,gdscript lua SetupSpaceTabs()
+	augroup end
+	]],
+  {}
+)
+
+vim.api.nvim_exec2(
+  [[
+	augroup hard-tabs
+		autocmd!
+		autocmd FileType go lua SetupHardTabs()
 	augroup end
 	]],
   {}
@@ -331,7 +356,7 @@ vim.api.nvim_exec2(
   [[
 	augroup lua-tabs
 		autocmd!
-		autocmd FileType lua,javascript,css,typescript,html,typescriptreact lua SetupLuaTabs()
+		autocmd FileType lua,javascript,css,typescript,html,typescriptreact,python lua SetupLuaTabs()
 	augroup end
 	]],
   {}
@@ -339,13 +364,14 @@ vim.api.nvim_exec2(
 
 
 
+local telescopeTheme = "dropdown"
 -----------------------------------------------------------
 -- WhichKey setup
 local wk = require("which-key")
 wk.register({
-  ["<space>"] = { "<cmd>Telescope buffers<CR>", "List buffers" },
-  f = { "<cmd>Telescope find_files<CR>", "Find File" },
-  s = { "<cmd>Telescope live_grep<CR>", "Grep" },
+  ["<space>"] = { "<cmd>Telescope buffers theme=dropdown layout_config={width=0.8}<CR>", "List buffers" },
+  f = { "<cmd>Telescope find_files theme=dropdown layout_config={width=0.8}<CR>", "Find File" },
+  s = { "<cmd>Telescope live_grep theme=dropdown layout_config={width=0.8}<CR>", "Grep" },
   a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
   y = { '"+y', "Copy to clipboard" },
   p = { '"+p', "Copy from clipboard" },
@@ -357,23 +383,23 @@ wk.register({
   },
   l = {
     name = "Lsp",
-    r = { "<cmd>Telescope lsp_references<CR>", "References" },
+    r = { "<cmd>Telescope lsp_references theme=dropdown layout_config={width=0.8}<CR>", "References" },
     f = { "<cmd>lua vim.lsp.buf.format { async = true }<CR>", "Formatting" },
-    i = { "<cmd>Telescope lsp_incoming_calls<CR>", "Incoming Calls" },
-    o = { "<cmd>Telescope lsp_outgoing_calls<CR>", "Outgoing Calls" },
-    s = { "<cmd>Telescope lsp_document_symbols<CR>", "Local Symbols" },
-    w = { "<cmd>Telescope lsp_document_symbols<CR>", "Workspace Symbols" },
-    d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
+    i = { "<cmd>Telescope lsp_incoming_calls theme=dropdown layout_config={width=0.8}<CR>", "Incoming Calls" },
+    o = { "<cmd>Telescope lsp_outgoing_calls theme=dropdown layout_config={width=0.8}<CR>", "Outgoing Calls" },
+    s = { "<cmd>Telescope lsp_document_symbols theme=dropdown layout_config={width=0.8}<CR>", "Local Symbols" },
+    w = { "<cmd>Telescope lsp_dynamic_workspace_symbols theme=dropdown layout_config={width=0.8}<CR>", "Workspace Symbols" },
+    d = { "<cmd>Telescope diagnostics theme=dropdown layout_config={width=0.8}<CR>", "Diagnostics" },
     t = { ":Trouble<CR>", "Diagnostics Window" },
     h = { ":ClangdSwitchSourceHeader<CR>", "Swap to header file (C++)" }
   },
   g = {
     name = "Git",
-    c = { "<cmd>Telescope git_commits<CR>", "Commits" },
-    l = { "<cmd>Telescope git_bcommits<CR>", "This File Commits" },
-    b = { "<cmd>Telescope git_branches<CR>", "Branches" },
-    s = { "<cmd>Telescope git_status<CR>", "Status" },
-    t = { "<cmd>Telescope git_stash<CR>", "Stash" },
+    c = { "<cmd>Telescope git_commits theme=dropdown layout_config={width=0.8}<CR>", "Commits" },
+    l = { "<cmd>Telescope git_bcommits theme=dropdown layout_config={width=0.8}<CR>", "This File Commits" },
+    b = { "<cmd>Telescope git_branches theme=dropdown layout_config={width=0.8}<CR>", "Branches" },
+    s = { "<cmd>Telescope git_status theme=dropdown layout_config={width=0.8}<CR>", "Status" },
+    t = { "<cmd>Telescope git_stash theme=dropdown layout_config={width=0.8}<CR>", "Stash" },
   },
   t = {
     name = "Toggle",
@@ -384,8 +410,6 @@ wk.register({
     n = { ":Navbuddy<CR>", "Navbuddy" },
     x = { ":Neorg", "Navbuddy" },
   },
-  c = { ":Telescope project_cli_commands open<cr>", "Open CLI commands" },
-  --_c = { ":Telescope project_cli_commands open<cr>", "Open CLI commands" },
 }, { prefix = "<leader>" })
 
 -----------------------------------------------------------
@@ -422,7 +446,7 @@ keymap("n", "j", "(v:count > 4 ? \"m'\" . v:count : \"\") . 'gj'", {
 -- Lsp
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>zz", noremaps)
 keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>zz", noremaps)
-keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", noremaps)
+keymap("n", "gr", "<cmd>Telescope lsp_references layout_config={width=0.8}<CR>", noremaps)
 keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>zz", noremaps)
 keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", noremaps)
 keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", noremaps)
@@ -444,9 +468,8 @@ keymap("n", "<ESC>", ":noh<CR><ESC>", noremaps)
 
 -- Windows
 keymap("n", "<C-w>v", "<C-w>v<C-w>l", noremaps)
-keymap("n", "<C-w>o", "<C-w>v<C-w>l<cmd>Telescope find_files<CR>", noremaps)
+keymap("n", "<C-w>o", "<C-w>v<C-w>l<cmd>Telescope find_files layout_config={width=0.8}<CR>", noremaps)
 
 -- Terminal
 keymap("t", "<Leader>tt", "<C-\\><C-n>:FloatermToggle<CR>", noremaps)
 
-gd_initialised = false

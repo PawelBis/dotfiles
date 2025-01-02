@@ -1,6 +1,20 @@
+general.import = [
+  "~/.config/alacritty/theme.toml"
+]
+[terminal.shell]
+
+program = "/bin/zsh"
+args = ["-l", "-c", "zellij"]
+
 [font]
 size = 14
 normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
 
 [window]
 option_as_alt = "Both"
+
+[keyboard]
+bindings = [
+  { key = "Equals", mods = "Super", action = "IncreaseFontSize" },
+  { key = "Minus", mods = "Super", action = "DecreaseFontSize" },
+]

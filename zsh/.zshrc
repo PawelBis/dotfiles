@@ -1,4 +1,5 @@
 export GPG_TTY=$(tty)
+#
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -48,5 +49,31 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 zvm_after_init_commands+=('eval "$(fzf --zsh)"')
+
 # setup fzf
 eval "$(fzf --zsh)"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'" 
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'" 
+
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo $'{}" "$@" ;;
+    ssh)          fzf --preview "dig {}" ;;
+    *)            fzf --preview "--preview 'bat -n --color=always --line-range :500 {}'" "$@" ;;
+  esac
+}

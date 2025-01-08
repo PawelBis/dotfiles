@@ -86,7 +86,7 @@ outer.right =      20
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
-alt-enter = 'exec-and-forget open -n -a /opt/homebrew/bin/Alacritty'
+alt-enter = 'exec-and-forget open -a /opt/homebrew/bin/Ghostty'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout h_tiles h_accordion'
@@ -183,4 +183,8 @@ run = ["layout floating"]
 
 [[on-window-detected]]
 if.app-id = "com.electron.dockerdesktop"
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-id = "com.mosyle.macos.business"
 run = ["layout floating"]

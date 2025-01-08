@@ -77,3 +77,11 @@ _fzf_comprun() {
     *)            fzf --preview "--preview 'bat -n --color=always --line-range :500 {}'" "$@" ;;
   esac
 }
+
+if [ -f "$HOME/.env" ]; then
+  source "$HOME/.env"
+fi
+
+if [ -f "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update" ]; then
+  source "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update"
+fi

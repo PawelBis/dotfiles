@@ -85,3 +85,5 @@ fi
 if [ -f "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update" ]; then
   source "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update"
 fi
+
+eval "$(direnv hook zsh)"

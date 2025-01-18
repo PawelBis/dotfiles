@@ -356,7 +356,7 @@ vim.api.nvim_exec2(
   [[
 	augroup lua-tabs
 		autocmd!
-		autocmd FileType lua,javascript,css,typescript,html,typescriptreact,python lua SetupLuaTabs()
+		autocmd FileType lua,javascript,css,typescript,html,typescriptreact,python,sh lua SetupLuaTabs()
 	augroup end
 	]],
   {}

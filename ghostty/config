@@ -1,2 +1,2 @@
-font-family = CaskaydiaCove Nerd Font Mono
 command = "/bin/zsh -l -c zellij"
+font-family = CaskaydiaCove Nerd Font

@@ -188,3 +188,7 @@ run = ["layout floating"]
 [[on-window-detected]]
 if.app-id = "com.mosyle.macos.business"
 run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-id = "com.epicgames.UnrealEditor"
+run = ["layout tiling"]

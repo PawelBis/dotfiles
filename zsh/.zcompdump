@@ -1,6 +1,7 @@
-#files: 1144	version: 5.9
+#files: 1159	version: 5.9
 
 _comps=(
+''\''brew' '_brew_services'
 '-' '_precommand'
 '-array-value-' '_value'
 '-assign-parameter-' '_assign'
@@ -115,6 +116,7 @@ _comps=(
 'add-zle-hook-widget' '_add-zle-hook-widget'
 'add-zsh-hook' '_add-zsh-hook'
 'admin' '_sccs'
+'aerospace' '_aerospace'
 'afew' '_afew'
 'age' '_age'
 'ali' '_mh'
@@ -188,6 +190,7 @@ _comps=(
 'basename' '_basename'
 'basenc' '_basenc'
 'bash' '_bash'
+'bat' '_bat'
 'batch' '_at'
 'baz' '_baz'
 'beadm' '_beadm'
@@ -212,6 +215,7 @@ _comps=(
 'bpython3-gtk' '_bpython'
 'bpython3-urwid' '_bpython'
 'brctl' '_brctl'
+'brew' '_brew'
 'bsdconfig' '_bsdconfig'
 'bsdgrep' '_grep'
 'bsdinstall' '_bsdinstall'
@@ -360,6 +364,7 @@ _comps=(
 'cygstart' '_cygstart'
 'cygstart.exe' '_cygstart'
 'dad' '_dad'
+'dagger' '_dagger'
 'dak' '_dak'
 'darcs' '_darcs'
 'dart' '_dart'
@@ -390,7 +395,7 @@ _comps=(
 'debuild' '_debuild'
 'declare' '_typeset'
 'defaults' '_defaults'
-'delta' '_sccs'
+'delta' '_delta'
 'designate' '_openstack'
 'devtodo' '_devtodo'
 'df' '_df'
@@ -508,6 +513,7 @@ _comps=(
 'express' '_webbrowser'
 'extcheck' '_java'
 'extractres' '_psutils'
+'eza' '_eza'
 'fab' '_fab'
 'fail2ban-client' '_fail2ban-client'
 'fakeroot' '_fakeroot'
@@ -515,6 +521,7 @@ _comps=(
 'fc' '_fc'
 'fc-list' '_xft_fonts'
 'fc-match' '_xft_fonts'
+'fd' '_fd'
 'feh' '_feh'
 'fetch' '_fetch'
 'fetchmail' '_fetchmail'
@@ -634,6 +641,7 @@ _comps=(
 'ghci' '_ghc'
 'ghead' '_head'
 'ghostscript' '_ghostscript'
+'ghostty' '_ghostty'
 'ghostview' '_pspdf'
 'gid' '_id'
 'ginstall' '_install'
@@ -883,6 +891,7 @@ _comps=(
 'jot' '_jot'
 'jq' '_jq'
 'jrnl' '_jrnl'
+'just' '_just'
 'kak' '_kak'
 'kdeconnect-cli' '_kdeconnect'
 'kdump' '_kdump'
@@ -1374,6 +1383,7 @@ _comps=(
 'restart' '_initctl'
 'retawq' '_webbrowser'
 'rfkill' '_rfkill'
+'rg' '_rg'
 'rgrep' '_grep'
 'rgview' '_vim'
 'rgvim' '_vim'
@@ -1421,6 +1431,7 @@ _comps=(
 'rvim' '_vim'
 'rwho' '_hosts'
 'rxvt' '_urxvt'
+'rye' '_rye'
 's2p' '_sed'
 'sact' '_sccs'
 'sadf' '_sysstat'
@@ -1457,6 +1468,7 @@ _comps=(
 'seq' '_seq'
 'serialver' '_java'
 'service' '_service'
+'services'\''' '_brew_services'
 'set' '_set'
 'setcap' '_setcap'
 'setfacl' '_setfacl'
@@ -1610,6 +1622,7 @@ _comps=(
 'thor' '_thor'
 'tidy' '_tidy'
 'tig' '_git'
+'tilt' '_tilt'
 'time' '_precommand'
 'timeout' '_timeout'
 'times' '_nothing'
@@ -1860,6 +1873,7 @@ _comps=(
 'zeal' '_zeal'
 'zed' '_zed'
 'zegrep' '_grep'
+'zellij' '_zellij'
 'zen' '_webbrowser'
 'zf_chgrp' '_chown'
 'zf_chmod' '_chmod'
@@ -1884,6 +1898,7 @@ _comps=(
 'zmv' '_zmv'
 'zone' '_hosts'
 'zoneadm' '_zoneadm'
+'zoxide' '_zoxide'
 'zparseopts' '_zparseopts'
 'zpool' '_zfs'
 'zpty' '_zpty'
@@ -2021,7 +2036,10 @@ bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz __antidote_bulk_clone __antidote_bundle_dir __antidote_bundle_name __antidote_bundle_type __antidote_bundle_zcompile \
+autoload -Uz _aerospace _bat _brew _brew_services _dagger \
+            _delta _eza _fd _ghostty _just \
+            _rg _rye _tilt _zellij _zoxide \
+            __antidote_bulk_clone __antidote_bundle_dir __antidote_bundle_name __antidote_bundle_type __antidote_bundle_zcompile \
             __antidote_collect_input __antidote_del __antidote_filter_defers __antidote_get_cachedir __antidote_indent \
             __antidote_initfiles __antidote_load_prep __antidote_parse_bundles __antidote_print_path __antidote_setup \
             __antidote_tourl __antidote_usage __antidote_version _antidote _SUSEconfig \

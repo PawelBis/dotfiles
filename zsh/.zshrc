@@ -4,18 +4,22 @@ export GPG_TTY=$(tty)
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load
+# Update fpath to provide completions bundled with homebrew apps
+fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 autoload -U compinit && compinit
 
 path+="/usr/bin/python3"
-path+="/Users/aomame/Library/Python/3.9/bin"
+path+="$HOME/Library/Python/3.9/bin"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH=$PATH:$HOME/Source/vcpkg
 export PATH=$PATH:$HOME/go/bin
+path+="$HOME/.cargo/bin"
 export DOTNET_ROOT=/usr/local/share/dotnet/
 export TERMINFO_DIRS=$HOME/.local/share/terminfo
 export XDG_CONFIG_HOME=$HOME/.config
@@ -85,5 +89,4 @@ fi
 if [ -f "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update" ]; then
   source "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update"
 fi
-
 eval "$(direnv hook zsh)"

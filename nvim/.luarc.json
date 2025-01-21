@@ -1,0 +1,7 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "navic_get_location",
+        "navic_is_avail"
+    ]
+}

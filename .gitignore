@@ -1,6 +1,4 @@
 plugin
-plugins
-plugin/packer_compiled.lua
 .git
 .zsh_history
 .zsh_sessions

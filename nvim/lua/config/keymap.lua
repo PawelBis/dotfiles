@@ -36,6 +36,7 @@ keymap("n", "<C-i>", "<C-i>zzzv", noremaps)
 
 -- Clear highlighting with ESC
 keymap("n", "<ESC>", ":noh<CR><ESC>", noremaps)
+keymap("n", "s", "", noremaps)
 
 -- Windows
 keymap("n", "<C-w>v", "<C-w>v<C-w>l", noremaps)
@@ -54,7 +55,7 @@ require("which-key").add({
 			return ":IncRename " .. vim.fn.expand("<cword>")
 		end,
 		desc = "Rename",
-		expr  = true,
+		expr = true,
 	},
 	{ "<leader>ci", "<cmd>FzfLua lsp_incoming_calls<CR>", desc = "Calls" },
 	{ "<leader>cd", "<cmd>Trouble<CR>", desc = "Diagnostics" },
@@ -84,7 +85,12 @@ require("which-key").add({
 	{ "[", group = "Prev" },
 	{ "]", group = "Next" },
 	{ "g", group = "Goto" },
-	{ "gs", group = "Surround" },
+	{ "s", group = "Surround" },
+	{ "sa", desc = "Add surround" },
+	{ "sd", desc = "Delete surround" },
+	{ "sr", desc = "Replace surround" },
+	{ "sf", desc = "Find surround" },
+	{ "sh", desc = "Highlight surround" },
 	{ "z", group = "Fold" },
 	{
 		"<leader>b",

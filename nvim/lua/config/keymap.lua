@@ -42,6 +42,9 @@ keymap("n", "s", "", noremaps)
 keymap("n", "<C-w>v", "<C-w>v<C-w>l", noremaps)
 keymap("n", "<C-w>o", "<C-w>v<C-w>l<cmd>Telescope find_files layout_config={width=0.8}<CR>", noremaps)
 
+-- Terminal
+keymap("t", "<leader>tt", "<C-\\><C-n>:FloatermToggle<CR>", noremaps)
+
 require("which-key").add({
 	mode = { "n", "v" },
 	{ "<leader><tab>", group = "Tabs" },
@@ -66,7 +69,6 @@ require("which-key").add({
 	{ "<leader>tr", ":set rnu!<CR>", desc = "Relative Numbers" },
 	{ "<leader>tp", ":Yazi<CR>", desc = "Project Explorer" },
 	{ "<leader>tn", ":Navbuddy<CR>", desc = "Navbuddy" },
-	{ "<leader>tx", ":Neorg", desc = "Navbuddy" },
 
 	{ "<leader>d", group = "Debug" },
 	{ "<leader>dp", group = "Profiler" },
@@ -76,8 +78,8 @@ require("which-key").add({
 
 	{ "<leader>s", group = "Search" },
 	{ "<leader>ss", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", desc = "Workspace symbols" },
-	{ "<leader>sS", "<cmd>FzfLua lsp_document_symbols<CR>", desc = "Workspace symbols" },
-	{ "<leader>sg", "<cmd>FzfLua live_grep<CR>", desc = "Workspace symbols" },
+	{ "<leader>sS", "<cmd>FzfLua lsp_document_symbols<CR>", desc = "Document symbols" },
+	{ "<leader>sg", "<cmd>FzfLua live_grep<CR>", desc = "Live grep" },
 	{ "<leader>sr", "<cmd>FzfLua resume<CR>", desc = "Resume last search" },
 
 	{ "<leader>y", '"+y', desc = "Copy to clipboard" },
@@ -85,6 +87,10 @@ require("which-key").add({
 	{ "[", group = "Prev" },
 	{ "]", group = "Next" },
 	{ "g", group = "Goto" },
+	{ "gr", "<cmd>FzfLua lsp_references<CR>", desc = "References" },
+	{ "gd", "<cmd> lua vim.lsp.buf.definition()<CR>zz", desc = "Definition" },
+	{ "gD", "<cmd> lua vim.lsp.buf.declaration()<CR>zz", desc = "Declaration" },
+	{ "gi", "<cmd>FzfLua lsp_implementations<CR>", desc = "Implementations" },
 	{ "s", group = "Surround" },
 	{ "sa", desc = "Add surround" },
 	{ "sd", desc = "Delete surround" },

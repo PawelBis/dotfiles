@@ -52,7 +52,14 @@ return {
 			vim.cmd.colorscheme("oxocarbon")
 		end,
 	},
-	{ "folke/tokyonight.nvim", lazy = false, priority = 1000 },
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("tokyonight")
+		end,
+	},
 	{ "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000 },
 	{
 		"folke/noice.nvim",
@@ -126,6 +133,14 @@ return {
 					lualine_a = { { context } },
 				},
 			})
+		end,
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+		config = function()
+			require("ibl").setup()
 		end,
 	},
 }

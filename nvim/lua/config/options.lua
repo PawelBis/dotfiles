@@ -13,6 +13,8 @@ vim.o.cursorline = true
 vim.o.matchpairs = vim.o.matchpairs .. ",<:>"
 -- Add match pair for `=` and `;`
 vim.o.matchpairs = vim.o.matchpairs .. ",=:;"
+-- Change updatetime so CursorHold autocommands trigger faster
+vim.o.updatetime = 200
 
 -- Set relative numbers + number of current line instead of 0
 vim.o.number = true
@@ -26,3 +28,12 @@ vim.opt.mousescroll = "ver:0,hor:0"
 vim.wo.foldlevel = 20
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+-- Disable virtual test diagnostics
+vim.diagnostic.config({
+	virtual_text = false,
+	float = {
+		source = true,
+		border = "rounded", -- none/single/double/rounded/solid/shadow
+	},
+})

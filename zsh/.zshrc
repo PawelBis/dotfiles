@@ -90,3 +90,9 @@ if [ -f "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update" ]; then
   source "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update"
 fi
 eval "$(direnv hook zsh)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/pawel/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pawel/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/pawel/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pawel/google-cloud-sdk/completion.zsh.inc'; fi

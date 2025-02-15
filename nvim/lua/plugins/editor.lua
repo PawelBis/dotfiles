@@ -48,8 +48,8 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.opt.background = "dark"
-			vim.cmd.colorscheme("oxocarbon")
+			-- vim.opt.background = "dark"
+			-- vim.cmd.colorscheme("oxocarbon")
 		end,
 	},
 	{
@@ -69,7 +69,8 @@ return {
 			"rcarriga/nvim-notify",
 		},
 		config = function()
-			require("noice").setup({
+			local noice = require("noice")
+			noice.setup({
 				lsp = {
 					override = {
 						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -125,13 +126,13 @@ return {
 					lualine_y = {},
 					lualine_z = {},
 				},
-				winbar = {
-					lualine_a = { { context } },
-					lualine_b = { { navic_get_location, cond = navic_is_avail } },
-				},
-				inactive_winbar = {
-					lualine_a = { { context } },
-				},
+				-- winbar = {
+				-- 	lualine_a = { { context } },
+				-- 	lualine_b = { { navic_get_location, cond = navic_is_avail } },
+				-- },
+				-- inactive_winbar = {
+				-- 	lualine_a = { { context } },
+				-- },
 			})
 		end,
 	},

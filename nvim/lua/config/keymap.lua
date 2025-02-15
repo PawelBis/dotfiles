@@ -42,6 +42,14 @@ keymap("n", "s", "", noremaps)
 keymap("n", "<C-w>v", "<C-w>v<C-w>l", noremaps)
 keymap("n", "<C-w>o", "<C-w>v<C-w>l<cmd>Telescope find_files layout_config={width=0.8}<CR>", noremaps)
 
+-- Debugging
+keymap("n", "<C-l>", ":lua require('dap').step_over()<CR>", noremaps)
+keymap("n", "<C-h>", ":lua require('dap').step_back()<CR>", noremaps)
+keymap("n", "<C-j>", ":lua require('dap').step_into()<CR>", noremaps)
+keymap("n", "<C-k>", ":lua require('dap').step_out()<CR>", noremaps)
+keymap("n", "<C-.>", ":lua require('dap').down()<CR>", noremaps)
+keymap("n", "<C-,>", ":lua require('dap').up()<CR>", noremaps)
+
 -- Terminal
 keymap("t", "<leader>tt", "<C-\\><C-n>:FloatermToggle<CR>", noremaps)
 
@@ -61,7 +69,7 @@ require("which-key").add({
 		expr = true,
 	},
 	{ "<leader>ci", "<cmd>FzfLua lsp_incoming_calls<CR>", desc = "Calls" },
-	{ "<leader>cd", "<cmd>Trouble<CR>", desc = "Diagnostics" },
+	{ "<leader>cd", "<cmd>Trouble diagnostics<CR>", desc = "Diagnostics" },
 	{ "<leader>ch", "<cmd>ClangdSwitchSourceHeader<CR>", desc = "Swap cpp/h" },
 	{ "<leader>t", group = "Toggle" },
 	{ "<leader>tt", ":FloatermToggle<CR>", desc = "Terminal" },
@@ -71,6 +79,10 @@ require("which-key").add({
 	{ "<leader>tn", ":Navbuddy<CR>", desc = "Navbuddy" },
 
 	{ "<leader>d", group = "Debug" },
+	{ "<leader>dc", ":lua require('dap').continue()<CR>", desc = "Start/Continue execution" },
+	{ "<leader>dq", ":lua require('dap').close()<CR>", desc = "Quit execution" },
+	{ "<leader>db", ":lua require('dap').toggle_breakpoint()<CR>", desc = "Toggle breakpoint" },
+	{ "<leader>dd", ":lua require('dap').run_to_cursor()<CR>", desc = "Run to cursor" },
 	{ "<leader>dp", group = "Profiler" },
 
 	{ "<leader>f", group = "File/find" },

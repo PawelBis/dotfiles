@@ -70,6 +70,9 @@ return {
 		},
 		config = function()
 			local noice = require("noice")
+			local notify = require("notify").setup({
+				stages = "static"
+			})
 			noice.setup({
 				lsp = {
 					override = {
@@ -79,10 +82,13 @@ return {
 					},
 				},
 				presets = {
-					bottom_search = true,
+					bottom_search = false,
 					command_palette = true,
-					long_message_to_split = true,
+					long_message_to_split = false,
 					inc_rename = true,
+				},
+				messages = {
+					view = "notify",
 				},
 			})
 		end,

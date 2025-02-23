@@ -57,6 +57,12 @@ require("which-key").add({
 	mode = { "n", "v" },
 	{ "<leader><tab>", group = "Tabs" },
 
+	{ "<leader>a", group = "Ai" },
+	{ "<leader>aa", "<cmd>CodeCompanionActions<CR>", desc = "Actions" },
+	{ "<leader>ap", "<cmd>CodeCompanion<CR>", desc = "Prompt" },
+	{ "<leader>ac", "<cmd>CodeCompanionChat<CR>", desc = "Chat" },
+	{ "<leader>aC", "<cmd>CodeCompanionCmd<CR>", desc = "Command" },
+
 	{ "<leader>c", group = "Code" },
 	{ "<leader>ca", "<cmd>FzfLua lsp_code_actions<CR>", desc = "Code actions" },
 	{ "<leader>cf", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", desc = "Format" },

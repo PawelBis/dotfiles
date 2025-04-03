@@ -20,6 +20,10 @@ vim.o.updatetime = 200
 vim.o.number = true
 vim.o.relativenumber = true
 
+-- Set case insensitive search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 -- Disable mouse support
 vim.opt.mouse = ""
 vim.opt.mousescroll = "ver:0,hor:0"

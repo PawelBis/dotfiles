@@ -42,6 +42,10 @@ return {
 			--
 			-- See the fuzzy documentation for more information
 			fuzzy = { implementation = "prefer_rust_with_warning" },
+			cmdline = {
+				completion = { menu = { auto_show = true } },
+				keymap = { preset = "inherit" },
+			},
 		},
 		opts_extend = { "sources.default" },
 	},

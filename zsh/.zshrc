@@ -25,6 +25,7 @@ export TERMINFO_DIRS=$HOME/.local/share/terminfo
 export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=/opt/homebrew/bin/nvim
 export VISUAL=nvim
+export GODOT_BIN=/opt/homebrew/bin/godot
 
 # Use zoxide by default
 alias cd="z"

@@ -75,7 +75,7 @@ require("which-key").add({
 		expr = true,
 	},
 	{ "<leader>ci", "<cmd>FzfLua lsp_incoming_calls<CR>", desc = "Calls" },
-	{ "<leader>cd", "<cmd>Trouble diagnostics<CR>", desc = "Diagnostics" },
+	{ "<leader>cd", "<cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics" },
 	{ "<leader>ch", "<cmd>ClangdSwitchSourceHeader<CR>", desc = "Swap cpp/h" },
 	{ "<leader>t", group = "Toggle" },
 	{ "<leader>tt", ":FloatermToggle<CR>", desc = "Terminal" },

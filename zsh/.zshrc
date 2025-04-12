@@ -97,3 +97,5 @@ if [ -f '/Users/pawel/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pawel/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/pawel/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pawel/google-cloud-sdk/completion.zsh.inc'; fi
+
+[ -f "/Users/pawel/.ghcup/env" ] && . "/Users/pawel/.ghcup/env" # ghcup-env

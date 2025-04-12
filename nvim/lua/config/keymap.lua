@@ -75,7 +75,9 @@ require("which-key").add({
 		expr = true,
 	},
 	{ "<leader>ci", "<cmd>FzfLua lsp_incoming_calls<CR>", desc = "Calls" },
-	{ "<leader>cd", "<cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics" },
+	{ "<leader>cd", ":lua vim.diagnostic.open_float()<CR>", desc = "Inline diagnostics" },
+	{ "<leader>ct", "<cmd>Trouble diagnostics toggle<CR>", desc = "Trouble global" },
+	{ "<leader>cf", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Trouble file" },
 	{ "<leader>ch", "<cmd>ClangdSwitchSourceHeader<CR>", desc = "Swap cpp/h" },
 	{ "<leader>t", group = "Toggle" },
 	{ "<leader>tt", ":FloatermToggle<CR>", desc = "Terminal" },
@@ -134,3 +136,22 @@ require("which-key").add({
 	-- better descriptions
 	{ "gx", desc = "Open with system app" },
 })
+
+local function show_diagnostics()
+	for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+		if vim.api.nvim_win_get_config(winid).zindex then
+			return
+		end
+	end
+	vim.diagnostic.open_float({
+		scope = "cursor",
+		focusable = false,
+		close_events = {
+			"CursorMoved",
+			"CursorMovedI",
+			"BufHidden",
+			"InsertCharPre",
+			"WinLeave",
+		},
+	})
+end

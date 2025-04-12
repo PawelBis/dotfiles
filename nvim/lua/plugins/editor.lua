@@ -71,7 +71,7 @@ return {
 		config = function()
 			local noice = require("noice")
 			local notify = require("notify").setup({
-				stages = "static"
+				stages = "static",
 			})
 			noice.setup({
 				lsp = {
@@ -90,55 +90,6 @@ return {
 				messages = {
 					view = "notify",
 				},
-			})
-		end,
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = {
-			"echasnovski/mini.icons",
-			"SmiteshP/nvim-navic",
-		},
-		config = function()
-			local function navis_is_avail()
-				return require("nvim-navic").is_available(vim.fn.bufnr())
-			end
-			navis_is_avail()
-
-			local function navic_get_location()
-				return require("nvim-navic").get_location({ click = true }, vim.fn.bufnr())
-			end
-
-			local function context()
-				local buffname = vim.fn.expand("%")
-				local buffname_to_context = {}
-				buffname_to_context["Trouble"] = "Diagnostics"
-				buffname_to_context["NvimTree_1"] = "File Explorer"
-				local ctx = buffname_to_context[buffname]
-				if ctx == nil then
-					ctx = "Context"
-				end
-
-				return ctx
-			end
-
-			require("lualine").setup({
-				option = { theme = "oxocarbon" },
-				sections = {
-					lualine_a = { "mode" },
-					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { { "filename", file_status = true, path = 1 } },
-					lualine_x = { "lsp_progress", "filetype" },
-					lualine_y = {},
-					lualine_z = {},
-				},
-				-- winbar = {
-				-- 	lualine_a = { { context } },
-				-- 	lualine_b = { { navic_get_location, cond = navic_is_avail } },
-				-- },
-				-- inactive_winbar = {
-				-- 	lualine_a = { { context } },
-				-- },
 			})
 		end,
 	},

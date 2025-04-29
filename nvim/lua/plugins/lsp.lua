@@ -118,6 +118,9 @@ return {
 
 			-- JS TS
 			lsp.ts_ls.setup({ capabilities = in_capabilities, filetypes = { "javascript", "typescript" } })
+
+			-- Kulala
+			lsp.kulala_ls.setup({ capabilities = in_capabilities })
 		end,
 	},
 	{

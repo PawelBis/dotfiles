@@ -4,6 +4,20 @@
 local keymap = vim.api.nvim_set_keymap
 local noremaps = { noremap = true, silent = true }
 
+vim.api.nvim_create_user_command("Google", function(o)
+	local escaped = vim.uri_encode(o.args)
+	local url = ("https://www.google.com/search?q=%s"):format(escaped)
+	vim.ui.open(url)
+end, { nargs = 1, desc = "just google it" })
+
+vim.api.nvim_create_user_command("Godot", function(o)
+	local escaped = vim.uri_encode(o.args)
+	local url = ("https://docs.godotengine.org/en/stable/search.html?q=%s&check_keywords=yes&area=default"):format(
+		escaped
+	)
+	vim.ui.open(url)
+end, { nargs = 1, desc = "godot docs search" })
+
 -- Improve .,!? with undo chain
 keymap("i", ",", ",<C-g>u", {})
 keymap("i", ".", ".<C-g>u", {})
@@ -95,6 +109,21 @@ require("which-key").add({
 
 	{ "<leader>f", group = "File/find" },
 	{ "<leader>ff", "<cmd>FzfLua files<CR>", desc = "file" },
+	{
+		"<leader>fs",
+		function()
+			return ":Google "
+		end,
+		expr = true,
+	},
+	{
+		"<leader>fg",
+		function()
+			return ":Godot "
+		end,
+		desc = "Godot Docs",
+		expr = true,
+	},
 
 	{ "<leader>s", group = "Search" },
 	{ "<leader>ss", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", desc = "Workspace symbols" },

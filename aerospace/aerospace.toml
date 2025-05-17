@@ -196,3 +196,8 @@ run = ["layout floating"]
 [[on-window-detected]]
 if.app-id = "com.epicgames.UnrealEditor"
 run = ["layout tiling"]
+
+[[on-window-detected]]
+if.app-id = "org.godotengine.godot"
+if.window-title-regex-substring = "DEBUG"
+run = ["layout floating"]

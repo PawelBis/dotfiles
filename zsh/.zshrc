@@ -26,6 +26,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=/opt/homebrew/bin/nvim
 export VISUAL=nvim
 export GODOT_BIN=/opt/homebrew/bin/godot
+export ZK_NOTEBOOK_DIR=$HOME/Notes
 
 # Use zoxide by default
 alias cd="z"

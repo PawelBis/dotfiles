@@ -41,3 +41,5 @@ vim.diagnostic.config({
 		border = "rounded", -- none/single/double/rounded/solid/shadow
 	},
 })
+
+vim.o.colorcolumn = "80"

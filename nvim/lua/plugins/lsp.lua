@@ -127,6 +127,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = "TSUpdate",
 		config = function()
+			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"rust",
@@ -150,5 +151,9 @@ return {
 				indent = { enable = true },
 			})
 		end,
+	},
+	{
+		"teatek/gdscript-extended-lsp.nvim",
+		opts = {},
 	},
 }

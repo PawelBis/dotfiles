@@ -6,6 +6,7 @@
   "formatter.nvim": { "branch": "master", "commit": "eb89a1f3e079f1b9680bc7293b75fffccb5e1598" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "fzf-lua": { "branch": "main", "commit": "7f28f8335fead00ffa05477f05ead4d90a1880d4" },
+  "gdscript-extended-lsp.nvim": { "branch": "master", "commit": "5710b3e7e4409ea5ab75dfab678180a76f9561f2" },
   "inc-rename.nvim": { "branch": "main", "commit": "2eaff20526ff6101337b84f4b0d238c11f47d7f4" },
   "indent-blankline.nvim": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },
   "kulala.nvim": { "branch": "main", "commit": "4a56a4cf40e126721a60039079f76a14caf5336a" },

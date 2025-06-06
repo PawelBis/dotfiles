@@ -140,7 +140,7 @@ require("which-key").add({
 	{ "gd", "<cmd> lua vim.lsp.buf.definition()<CR>zz", desc = "Definition" },
 	{ "gD", "<cmd> lua vim.lsp.buf.declaration()<CR>zz", desc = "Declaration" },
 	{ "gi", "<cmd>FzfLua lsp_implementations<CR>", desc = "Implementations" },
-	{ "s", group = "Surround" },
+	{ "S", group = "Surround" },
 	{ "sa", desc = "Add surround" },
 	{ "sd", desc = "Delete surround" },
 	{ "sr", desc = "Replace surround" },

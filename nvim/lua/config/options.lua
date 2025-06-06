@@ -42,4 +42,4 @@ vim.diagnostic.config({
 	},
 })
 
-vim.o.colorcolumn = "80"
+vim.o.colorcolumn = 100

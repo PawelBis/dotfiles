@@ -3,3 +3,4 @@ plugin
 .zsh_history
 .zsh_sessions
 .zcompdump
+lazy-lock.json

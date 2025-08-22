@@ -42,7 +42,15 @@ return {
 					lualine_b = { "branch", "diff", "diagnostics" },
 					lualine_c = { { "filename", file_status = true, path = 1 }, { symbols.get, cond = symbols.has } },
 					lualine_d = { { symbols.get, cond = symbols.has } },
-					lualine_x = { "searchcount", "selectioncount" },
+					lualine_x = {
+						"searchcount",
+						"selectioncount",
+						{
+							require("noice").api.statusline.mode.get,
+							cond = require("noice").api.statusline.mode.has,
+							color = { fg = "#ff9e64" },
+						},
+					},
 					lualine_y = { "lsp_status", "filetype" },
 					lualine_z = { "location" },
 				},

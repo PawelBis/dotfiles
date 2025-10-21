@@ -66,7 +66,7 @@ return {
 			local lsp = require("lspconfig")
 
 			-- Rust
-			lsp.rust_analyzer.setup({
+			vim.lsp.config("rust_analyzer", {
 				capabilities = in_capabilities,
 				settings = {
 					["rust-analyzer"] = {
@@ -84,7 +84,7 @@ return {
 			})
 
 			-- Lua
-			lsp.lua_ls.setup({
+			vim.lsp.config("lua_ls", {
 				capabilities = in_capabilities,
 				settings = {
 					Lua = {
@@ -100,27 +100,27 @@ return {
 			})
 
 			-- C++
-			lsp.clangd.setup({
+			vim.lsp.config("clangd", {
 				capabilities = in_capabilities,
 			})
 
 			-- Zig
-			lsp.zls.setup({ capabilities = in_capabilities })
+			vim.lsp.config("zls", { capabilities = in_capabilities })
 
 			-- Godot
-			lsp.gdscript.setup({ capabilities = in_capabilities })
+			vim.lsp.config("gdscript", { capabilities = in_capabilities })
 
 			-- Go
-			lsp.gopls.setup({ capabilities = in_capabilities })
+			vim.lsp.config("gopls", { capabilities = in_capabilities })
 
 			-- Python
-			lsp.gopls.setup({ capabilities = in_capabilities })
+			vim.lsp.config("gopls", { capabilities = in_capabilities })
 
 			-- JS TS
-			lsp.ts_ls.setup({ capabilities = in_capabilities, filetypes = { "javascript", "typescript" } })
+			vim.lsp.config("ts_ls", { capabilities = in_capabilities, filetypes = { "javascript", "typescript" } })
 
 			-- Kulala
-			lsp.kulala_ls.setup({ capabilities = in_capabilities })
+			vim.lsp.config("kulala_ls", { capabilities = in_capabilities })
 		end,
 	},
 	{

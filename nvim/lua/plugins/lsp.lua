@@ -63,7 +63,6 @@ return {
 			require("mason").setup()
 			require("mason-lspconfig").setup()
 			local in_capabilities = require("blink.cmp").get_lsp_capabilities()
-			local lsp = require("lspconfig")
 
 			-- Rust
 			vim.lsp.config("rust_analyzer", {
@@ -82,6 +81,7 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable("rust_analyzer")
 
 			-- Lua
 			vim.lsp.config("lua_ls", {
@@ -98,29 +98,25 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable("lua_ls")
 
 			-- C++
-			vim.lsp.config("clangd", {
-				capabilities = in_capabilities,
-			})
+			vim.lsp.enable("clangd")
 
 			-- Zig
-			vim.lsp.config("zls", { capabilities = in_capabilities })
+			vim.lsp.enable("zls")
 
 			-- Godot
-			vim.lsp.config("gdscript", { capabilities = in_capabilities })
+			vim.lsp.enable("gdscript")
 
 			-- Go
-			vim.lsp.config("gopls", { capabilities = in_capabilities })
+			vim.lsp.enable("gopls")
 
 			-- Python
-			vim.lsp.config("gopls", { capabilities = in_capabilities })
-
-			-- JS TS
-			vim.lsp.config("ts_ls", { capabilities = in_capabilities, filetypes = { "javascript", "typescript" } })
+			-- vim.lsp.enable("gopls", { capabilities = in_capabilities })
 
 			-- Kulala
-			vim.lsp.config("kulala_ls", { capabilities = in_capabilities })
+			vim.lsp.enable("kulala_ls")
 		end,
 	},
 	{

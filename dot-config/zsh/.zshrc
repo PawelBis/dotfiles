@@ -11,7 +11,7 @@ fi
 os=$(uname)
 if [[ "$os" == "Linux" ]]; then
 	source "$ZDOTDIR/linux.zsh"
-elif [[ "$os" == "Darwin" ]]
+elif [[ "$os" == "Darwin" ]]; then
 	source "$ZDOTDIR/macos.zsh"
 fi
 autoload -U compinit && compinit

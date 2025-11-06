@@ -4,3 +4,4 @@ plugin
 .zsh_sessions
 .zcompdump
 lazy-lock.json
+.zsh_plugins.zsh

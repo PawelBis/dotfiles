@@ -12,3 +12,12 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 		vim.highlight.on_yank({ timeout = 200, visual = true })
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = "help",
+	command = "wincmd L",
+})
+
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+	command = "wincmd =",
+})

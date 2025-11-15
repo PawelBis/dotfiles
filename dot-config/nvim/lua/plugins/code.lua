@@ -9,6 +9,16 @@ return {
 				filetype = {
 					lua = { require("formatter.filetypes.lua").stylua },
 					go = { require("formatter.filetypes.go").gofmt },
+					gdscript = {
+						function()
+							return {
+								exe = "gdformat",
+								args = { "-" },
+								stdin = true,
+							}
+						end
+					},
+					python = { require("formatter.filetypes.python").ruff },
 					rust = { require("formatter.filetypes.rust").rustfmt },
 					sh = { require("formatter.filetypes.sh").shfmt },
 					zsh = { require("formatter.filetypes.zsh").beautysh },
@@ -22,6 +32,7 @@ return {
 		config = function()
 			require("lint").linters_by_ft = {
 				go = { "golangcilint" },
+				gdscript = { "gdlint" },
 			}
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function()

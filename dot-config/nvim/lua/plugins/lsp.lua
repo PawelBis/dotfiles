@@ -113,7 +113,7 @@ return {
 			vim.lsp.enable("gopls")
 
 			-- Python
-			-- vim.lsp.enable("gopls", { capabilities = in_capabilities })
+			vim.lsp.enable("jedi-language-server")
 
 			-- Kulala
 			vim.lsp.enable("kulala_ls")

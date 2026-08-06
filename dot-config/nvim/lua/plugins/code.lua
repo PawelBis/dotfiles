@@ -19,7 +19,7 @@ return {
 						end
 					},
 					python = { require("formatter.filetypes.python").ruff },
-					rust = { require("formatter.filetypes.rust").rustfmt },
+					rust = { { exe = "rustfmt", args = { "--edition 2024" }, stdin = true, } },
 					sh = { require("formatter.filetypes.sh").shfmt },
 					zsh = { require("formatter.filetypes.zsh").beautysh },
 					["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace },

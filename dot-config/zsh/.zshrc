@@ -20,6 +20,7 @@ path+="/usr/bin/python3"
 path+="$HOME/Library/Python/3.9/bin"
 export PATH=$PATH:$HOME/Source/vcpkg
 export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/.local/bin
 path+="$HOME/.cargo/bin"
 export DOTNET_ROOT=/usr/local/share/dotnet/
 export TERMINFO_DIRS=$HOME/.local/share/terminfo
@@ -87,8 +88,8 @@ if [ -f "$HOME/.env" ]; then
   source "$HOME/.env"
 fi
 
-if [ -f "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update" ]; then
-  source "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update"
+if [ -f "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update.sh" ]; then
+  source "$XDG_CONFIG_HOME/zsh/scripts/zsh_tab_update.sh"
 fi
 eval "$(direnv hook zsh)"
 

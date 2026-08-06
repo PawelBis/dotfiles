@@ -1,0 +1,128 @@
+# basic .paneru.toml
+[options]
+auto_center = false
+horizontal_mouse_warp = -1
+horizontal_mouse_warp_offset = 700
+focus_follows_mouse = false
+mouse_follows_focus = false
+
+[restore]
+enabled = true
+startup_grace_ms = 15000
+missing_windows = "ignore"
+
+# [bindings]
+# window_focus_west = "cmd - h"
+# window_focus_east = "cmd - l"
+# window_resize = "alt - r"
+# window_center = "alt - c"
+# quit = "ctrl + alt - q"
+
+# Cycle through these widths with window_resize binding
+preset_column_widths = [0.25, 0.33, 0.50, 0.66, 0.75]
+
+# Animation speed in pixels/second
+animation_speed = 10
+
+[bindings]
+# Focus (was cmd-h/j/k/l in AeroSpace)
+window_focus_west  = "cmd - h"
+window_focus_east  = "cmd - l"
+window_focus_north = "cmd - k"
+window_focus_south = "cmd - j"
+
+# Swap/move windows (was alt-shift-h/j/k/l)
+window_swap_west  = "alt + shift - h"
+window_swap_east  = "alt + shift - l"
+window_swap_north  = "alt + shift - k"
+window_swap_south  = "alt + shift - j"
+
+# Jump to first/last window on strip
+window_focus_first = "cmd + shift - h"
+window_focus_last  = "cmd + shift - l"
+
+# Move to first/last position
+window_swap_first = "alt + shift - u"
+window_swap_last  = "alt + shift - o"
+
+# Resize: cycle through preset_column_widths (was alt-shift-minus/equal)
+window_resize = "alt + shift - equal"
+
+# Toggle fullwidth (maximize horizontally)
+window_fullwidth = "alt - f"
+
+# Center current window on screen
+window_center = "alt - c"
+
+# Toggle window between managed (tiled) and floating (was cmd-t in AeroSpace)
+window_manage = "cmd - t"
+
+# Stack/unstack into left column
+window_stack   = "alt - ]"
+window_unstack = "alt + shift - ]"
+
+# Move window to next display (was alt-shift-tab move-workspace-to-monitor)
+window_nextdisplay = "alt - n"
+
+# Quit Paneru
+quit = "ctrl + alt - q"
+
+# ---------------------------------------------------------------------------
+# Window rules — floating apps (from AeroSpace on-window-detected rules)
+# Paneru matches by bundle_id and/or title regex.
+# ---------------------------------------------------------------------------
+
+[windows.bitwarden_browser]
+title = "Bitwarden"
+bundle_id = "com.brave.Browser"
+floating = true
+
+[windows.bitwarden_app]
+bundle_id = "com.bitwarden.desktop"
+title = ".*"
+floating = true
+
+[windows.finder]
+bundle_id = "com.apple.finder"
+title = ".*"
+floating = true
+
+[windows.onepassword]
+bundle_id = "com.1password.1password"
+title = ".*"
+floating = true
+
+[windows.godot_debug]
+bundle_id = "org.godotengine.godot"
+title = "DEBUG"
+floating = true
+
+[windows.spotify]
+bundle_id = "com.spotify.client"
+title = ".*"
+floating = true
+
+[windows.zoom]
+bundle_id = "us.zoom.xos"
+title = ".*"
+floating = true
+
+[windows.insomnia]
+bundle_id = "com.insomnia.app"
+title = ".*"
+floating = true
+
+[windows.cloudflare]
+bundle_id = "com.cloudflare.1dot1dot1dot1.macos"
+title = ".*"
+floating = true
+
+[windows.pip]
+title = "Picture.*(in)?.*[Pp]icture"
+floating = true
+
+# Global padding for all managed windows (approximates AeroSpace gaps)
+[windows.all]
+title = ".*"
+horizontal_padding = 5
+vertical_padding = 5

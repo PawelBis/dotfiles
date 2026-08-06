@@ -193,10 +193,6 @@ if.window-title-regex-substring = "DEBUG"
 run = ["layout floating"]
 
 [[on-window-detected]]
-if.app-id = "com.anthropic.claudefordesktop"
-run = ["layout floating"]
-
-[[on-window-detected]]
 if.app-id = "com.spotify.client"
 run = ["layout floating", "move-node-to-workspace 3"]
 
@@ -211,3 +207,15 @@ run = ["move-node-to-workspace 2"]
 [[on-window-detected]]
 if.app-id = "com.google.edgemac"
 run = ["move-node-to-workspace 2"]
+
+[[on-window-detected]]
+if.app-id = "us.zoom.xos"
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-id = "com.insomnia.app"
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-id = "com.cloudflare.1dot1dot1dot1.macos"
+run = ["layout floating"]

@@ -64,6 +64,21 @@ keymap("n", "<C-k>", ":lua require('dap').step_out()<CR>", noremaps)
 keymap("n", "<C-.>", ":lua require('dap').down()<CR>", noremaps)
 keymap("n", "<C-,>", ":lua require('dap').up()<CR>", noremaps)
 
+
+-- Print and copy current file with line and copy
+function print_and_copy_buffer()
+	vim.cmd("echo expand('%:.') .. ':' .. line('.')")
+	vim.cmd("let @+= expand('%:.') .. ':' .. line('.')")
+end
+keymap("n", "<C-g>", ":lua print_and_copy_buffer()<CR>", noremaps)
+
+function print_and_copy_buffer_full()
+	vim.cmd("echo expand('%:p') .. ':' .. line('.')")
+	vim.cmd("let @+= expand('%:p') .. ':' .. line('.')")
+end
+keymap("n", "<C-S-g>", ":lua print_and_copy_buffer_full()<CR>", noremaps)
+
+
 -- Terminal
 keymap("t", "<leader>tt", "<C-\\><C-n>:FloatermToggle<CR>", noremaps)
 

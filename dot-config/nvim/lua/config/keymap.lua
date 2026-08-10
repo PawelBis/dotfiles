@@ -140,6 +140,8 @@ require("which-key").add({
 		expr = true,
 	},
 
+	{ "<leader>o", group = "Octo" },
+
 	{ "<leader>s", group = "Search" },
 	{ "<leader>ss", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", desc = "Workspace symbols" },
 	{ "<leader>sS", "<cmd>FzfLua lsp_document_symbols<CR>", desc = "Document symbols" },

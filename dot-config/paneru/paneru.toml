@@ -6,47 +6,36 @@ horizontal_mouse_warp_offset = 700
 focus_follows_mouse = false
 mouse_follows_focus = false
 
+[restore]
+enabled = true
+startup_grace_ms = 15000
+missing_windows = "ignore"
+
+# [bindings]
+# window_focus_west = "cmd - h"
+# window_focus_east = "cmd - l"
+# window_resize = "alt - r"
+# window_center = "alt - c"
+# quit = "ctrl + alt - q"
+
 # Cycle through these widths with window_resize binding
 preset_column_widths = [0.25, 0.33, 0.50, 0.66, 0.75]
 
 # Animation speed in pixels/second
 animation_speed = 10
 
-# Drop a virtual row as soon as its last window leaves.
-# NOTE: this also means window_virtualnum_<n> can never create a row - an empty
-# new row is despawned before you land on it. Rows are created by moving a
-# window into them (window_virtualmove_south), which is the only flow used here.
-reap_empty_workspaces = true
-
-[restore]
-enabled = true
-startup_grace_ms = 15000
-missing_windows = "ignore"
-
-# 4-finger swipe: vertical switches virtual rows, horizontal scrolls the strip.
-# 4 rather than 3 so the native macOS Spaces gesture is left alone.
-[swipe.gesture]
-fingers_count = 4
-direction     = "Natural"
-vertical      = true
-
 [bindings]
-# Focus along the strip (was cmd-h/l in AeroSpace)
+# Focus (was cmd-h/j/k/l in AeroSpace)
 window_focus_west  = "cmd - h"
 window_focus_east  = "cmd - l"
+window_focus_north = "cmd - k"
+window_focus_south = "cmd - j"
 
-# Swap/move windows along the strip (was alt-shift-h/l)
+# Swap/move windows (was alt-shift-h/j/k/l)
 window_swap_west  = "alt + shift - h"
 window_swap_east  = "alt + shift - l"
-
-# Switch between virtual rows (was cmd-k/j focus north/south)
-window_virtual_north = "cmd - k"
-window_virtual_south = "cmd - j"
-
-# Move focused window to the row above/below and follow it.
-# Creates the row if it does not exist yet.
-window_virtualmove_north = "alt + shift - k"
-window_virtualmove_south = "alt + shift - j"
+window_swap_north  = "alt + shift - k"
+window_swap_south  = "alt + shift - j"
 
 # Jump to first/last window on strip
 window_focus_first = "cmd + shift - h"

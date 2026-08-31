@@ -121,30 +121,36 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		build = "TSUpdate",
+		branch = "main", -- Explicitly track the new main branch
+		build = ":TSUpdate",
 		config = function()
-			---@diagnostic disable-next-line: missing-fields
-			require("nvim-treesitter.config").setup({
-				ensure_installed = {
-					"rust",
-					"c",
-					"cpp",
-					"go",
-					"python",
-					"sql",
-					"bash",
-					"zig",
-					"vim",
-					"regex",
-					"lua",
-					"markdown",
-					"markdown_inline",
-				},
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = { "markdown" },
-				},
-				indent = { enable = true },
+			local ts = require("nvim-treesitter")
+
+			ts.install({
+				"rust",
+				"c",
+				"cpp",
+				"go",
+				"python",
+				"sql",
+				"bash",
+				"zig",
+				"vim",
+				"regex",
+				"lua",
+				"markdown",
+				"markdown_inline",
+			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(event)
+					local lang = vim.treesitter.language.get_lang(event.match) or event.match
+
+					local ok = pcall(vim.treesitter.start, event.buf, lang)
+					if ok then
+						vim.bo[event.buf].indentexpr = "v:lua.vim.treesitter.get_indent()"
+					end
+				end,
 			})
 		end,
 	},
